@@ -1,0 +1,63 @@
+name: upsc_consultant
+description: "UPSC Consultant - Your Partner in UPSC Success"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_animate: ^4.5.2
+  audioplayers: ^6.8.1
+  flutter_svg: ^2.3.0
+  shimmer: ^3.0.0
+  provider: ^6.1.5+1
+  dio: ^5.10.0
+  http: ^1.6.0
+  go_router: ^17.3.0
+  lottie: ^3.5.1
+  connectivity_plus: ^7.2.0
+  iconsax_flutter: ^1.0.1
+  cached_network_image: ^3.4.1
+  image_picker: ^1.1.2
+  file_picker: ^8.1.7
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/audio/
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/static/PlusJakartaSans-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/static/PlusJakartaSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/static/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/static/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/static/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/static/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/static/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/static/PlusJakartaSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/static/PlusJakartaSans-BoldItalic.ttf
+          weight: 700
+          style: italic
