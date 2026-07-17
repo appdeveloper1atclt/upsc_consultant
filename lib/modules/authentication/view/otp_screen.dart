@@ -72,7 +72,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> with Sing
     if (mounted) {
       setState(() => _isLoading = false);
       if (code == "123456" || code == "111111" || code.length == 6) {
-        context.go(AppRoutes.home);
+        context.go(AppRoutes.journey);
       } else {
         _showSnack('Invalid OTP code. Try again.');
       }

@@ -6,6 +6,7 @@ import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 import 'package:upsc_consultant/core/routes/approute.dart';
 import 'package:upsc_consultant/modules/home/widgets/top_mentors_section.dart';
 import '../widgets/slot_chip.dart';
+import '../../../core/widgets/shimmer_placeholder.dart';
 
 class MentorDetailScreen extends StatefulWidget {
   final MentorData mentor;
@@ -59,7 +60,7 @@ class _MentorDetailScreenState extends State<MentorDetailScreen> {
                           width: 110,
                           height: 110,
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(width: 110, height: 110, color: AppColors.chipBackground),
+                          placeholder: (context, url) => const ShimmerPlaceholder.circle(size: 110),
                           errorWidget: (context, url, error) => Container(width: 110, height: 110, color: AppColors.chipBackground),
                         ),
                       ),

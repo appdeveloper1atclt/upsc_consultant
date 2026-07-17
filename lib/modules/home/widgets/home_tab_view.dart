@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import 'package:upsc_consultant/core/routes/approute.dart';
 import 'package:upsc_consultant/core/constant/app_image.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class HomeTabView extends StatelessWidget {
   final void Function(int index) onNavTap;
@@ -50,24 +51,39 @@ class HomeTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AnswerScannerBanner(onScanTap: () => onNavTap(2)),
-          const SizedBox(height: 12),
-          const ScannerStatsRow(),
-          const SizedBox(height: 12),
-          const TodayChallengeCard(),
-          const SizedBox(height: 12),
+          AnswerScannerBanner(onScanTap: () => onNavTap(2))
+              .animate()
+              .fade(duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
+          const ScannerStatsRow()
+              .animate()
+              .fade(delay: 50.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
+          const TodayChallengeCard()
+              .animate()
+              .fade(delay: 100.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
 
           // Consultation Mentorship Banner Card
-          _buildConsultationBanner(context),
-          const SizedBox(height: 12),
+          _buildConsultationBanner(context)
+              .animate()
+              .fade(delay: 150.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
 
           // Continue Learning Section
-          ContinueLearningSection(onViewAllTap: () => context.push(AppRoutes.pendingLearning)),
-          const SizedBox(height: 8),
+          ContinueLearningSection(onViewAllTap: () => context.push(AppRoutes.pendingLearning))
+              .animate()
+              .fade(delay: 200.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 6),
 
           // Quick Access Grid (Moved below Continue Learning)
           QuickActionsGrid(
@@ -91,20 +107,30 @@ class HomeTabView extends StatelessWidget {
             onMentorConnectTap: () => onNavTap(1),
             onPrelimsTap: () => onNavTap(3),
             onMainsTap: () => onNavTap(3),
-          ),
-          const SizedBox(height: 12),
+          ).animate()
+              .fade(delay: 250.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
 
           // Study Analytics Section
-          StudyAnalyticsSection(onViewAllTap: () => context.push(AppRoutes.studyAnalytics)),
-          const SizedBox(height: 12),
+          StudyAnalyticsSection(onViewAllTap: () => context.push(AppRoutes.studyAnalytics))
+              .animate()
+              .fade(delay: 300.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 8),
 
           TopMentorsSection(
             mentors: mentors,
             onMentorTap: (m) => context.push(AppRoutes.mentorDetail, extra: m),
             onViewAllTap: () => onNavTap(1),
-          ),
-          const SizedBox(height: 16),
-          const QuoteBanner(),
+          ).animate()
+              .fade(delay: 350.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
+          const SizedBox(height: 12),
+          const QuoteBanner()
+              .animate()
+              .fade(delay: 400.ms, duration: 400.ms)
+              .slideY(begin: 0.15, end: 0, curve: Curves.easeOutQuad),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 import 'package:upsc_consultant/modules/home/widgets/top_mentors_section.dart';
 import 'package:go_router/go_router.dart';
 import 'package:upsc_consultant/core/routes/approute.dart';
+import '../../../core/widgets/shimmer_placeholder.dart';
 
 class MentorCard extends StatelessWidget {
   final MentorData mentor;
@@ -50,7 +51,7 @@ class MentorCard extends StatelessWidget {
                           width: 56,
                           height: 56,
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(width: 56, height: 56, color: AppColors.chipBackground),
+                          placeholder: (context, url) => const ShimmerPlaceholder.circle(size: 56),
                           errorWidget: (context, url, error) => Container(width: 56, height: 56, color: AppColors.chipBackground),
                         ),
                       ),

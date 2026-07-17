@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/app_text_styles.dart';
 import '../widgets/custom_segmented_tab_bar.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class StudyAnalyticsScreen extends StatefulWidget {
   const StudyAnalyticsScreen({super.key});
@@ -83,27 +84,45 @@ class _StudyAnalyticsScreenState extends State<StudyAnalyticsScreen> with Single
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Timeframe Segmented Selector
-            CustomSegmentedTabBar(controller: _timeframeController, tabs: const ['Weekly View', 'Monthly View']),
+            CustomSegmentedTabBar(controller: _timeframeController, tabs: const ['Weekly View', 'Monthly View'])
+                .animate()
+                .fade(duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 20),
 
             // Main Summary Dashboard
-            _buildMainDashboard(totalHours, dailyAverage, isWeekly),
+            _buildMainDashboard(totalHours, dailyAverage, isWeekly)
+                .animate()
+                .fade(delay: 50.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 20),
 
             // fl_chart Bar Chart Card
-            _buildChartCard(isWeekly),
+            _buildChartCard(isWeekly)
+                .animate()
+                .fade(delay: 100.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 20),
 
             // Subject wise study breakdown
-            _buildSubjectBreakdown(subjects, totalHours),
+            _buildSubjectBreakdown(subjects, totalHours)
+                .animate()
+                .fade(delay: 150.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 20),
 
             // Premium Performance Grid
-            _buildPerformanceGrid(isWeekly),
+            _buildPerformanceGrid(isWeekly)
+                .animate()
+                .fade(delay: 200.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 20),
 
             // AI Insights Recommendations
-            _buildAiInsights(),
+            _buildAiInsights()
+                .animate()
+                .fade(delay: 250.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
             const SizedBox(height: 32),
           ],
         ),

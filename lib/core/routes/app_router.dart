@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../modules/splash/splash_screen.dart';
 import '../../modules/onboarding/onboarding_screen.dart';
+import '../../modules/onboarding/journey_screen.dart';
 import '../../modules/authentication/view/login_screen.dart';
 import '../../modules/authentication/view/otp_screen.dart';
 import '../../modules/home/view/home_screen.dart';
@@ -20,7 +21,6 @@ import '../../modules/home/view/study_analytics_screen.dart';
 import '../../modules/home/view/consultation_flow_screen.dart';
 import 'approute.dart';
 
-
 /// Central GoRouter configuration.
 /// All app navigation is defined here — nowhere else.
 final GoRouter appRouter = GoRouter(
@@ -31,24 +31,17 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.splash,
       name: 'splash',
-      pageBuilder: (context, state) => const NoTransitionPage(
-        child: SplashScreen(),
-      ),
+      pageBuilder: (context, state) => const NoTransitionPage(child: SplashScreen()),
     ),
 
     // ── Onboarding ──────────────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.onboarding,
-      name: 'onboarding',
-      pageBuilder: (context, state) => _slideIn(const OnboardingScreen()),
-    ),
+    GoRoute(path: AppRoutes.onboarding, name: 'onboarding', pageBuilder: (context, state) => _slideIn(const OnboardingScreen())),
+
+    // ── Journey Onboarding ───────────────────────────────────────────────────
+    GoRoute(path: AppRoutes.journey, name: 'journey', pageBuilder: (context, state) => _slideIn(const JourneyScreen())),
 
     // ── Login ────────────────────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.login,
-      name: 'login',
-      pageBuilder: (context, state) => _slideIn(const LoginScreen()),
-    ),
+    GoRoute(path: AppRoutes.login, name: 'login', pageBuilder: (context, state) => _slideIn(const LoginScreen())),
 
     // ── OTP Verify ───────────────────────────────────────────────────────────
     // Receives mobileNumber as query param: /otp-verify?mobile=9876543210
@@ -62,11 +55,7 @@ final GoRouter appRouter = GoRouter(
     ),
 
     // ── Home ─────────────────────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.home,
-      name: 'home',
-      pageBuilder: (context, state) => _slideIn(const HomeScreen()),
-    ),
+    GoRoute(path: AppRoutes.home, name: 'home', pageBuilder: (context, state) => _slideIn(const HomeScreen())),
 
     // ── Mentor Detail ────────────────────────────────────────────────────────
     GoRoute(
@@ -103,11 +92,7 @@ final GoRouter appRouter = GoRouter(
     ),
 
     // ── Daily PT Challenge Select ──────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.dailyPtSelect,
-      name: 'daily-pt-select',
-      pageBuilder: (context, state) => _slideIn(const PtTopicSelectScreen()),
-    ),
+    GoRoute(path: AppRoutes.dailyPtSelect, name: 'daily-pt-select', pageBuilder: (context, state) => _slideIn(const PtTopicSelectScreen())),
 
     // ── Daily PT Challenge Instructions ─────────────────────────────────────
     GoRoute(
@@ -120,48 +105,23 @@ final GoRouter appRouter = GoRouter(
     ),
 
     // ── Daily PT Challenge Quiz ─────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.dailyPtQuiz,
-      name: 'daily-pt-quiz',
-      pageBuilder: (context, state) => _slideIn(const PtQuizScreen()),
-    ),
+    GoRoute(path: AppRoutes.dailyPtQuiz, name: 'daily-pt-quiz', pageBuilder: (context, state) => _slideIn(const PtQuizScreen())),
 
     // ── Daily PT Challenge Result ───────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.dailyPtResult,
-      name: 'daily-pt-result',
-      pageBuilder: (context, state) => _slideIn(const PtResultScreen()),
-    ),
+    GoRoute(path: AppRoutes.dailyPtResult, name: 'daily-pt-result', pageBuilder: (context, state) => _slideIn(const PtResultScreen())),
 
     // ── Daily PT Challenge Preview ──────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.dailyPtPreview,
-      name: 'daily-pt-preview',
-      pageBuilder: (context, state) => _slideIn(const PtPreviewScreen()),
-    ),
+    GoRoute(path: AppRoutes.dailyPtPreview, name: 'daily-pt-preview', pageBuilder: (context, state) => _slideIn(const PtPreviewScreen())),
 
     // ── Pending Learning ────────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.pendingLearning,
-      name: 'pending-learning',
-      pageBuilder: (context, state) => _slideIn(const PendingLearningScreen()),
-    ),
+    GoRoute(path: AppRoutes.pendingLearning, name: 'pending-learning', pageBuilder: (context, state) => _slideIn(const PendingLearningScreen())),
 
     // ── Study Analytics ─────────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.studyAnalytics,
-      name: 'study-analytics',
-      pageBuilder: (context, state) => _slideIn(const StudyAnalyticsScreen()),
-    ),
+    GoRoute(path: AppRoutes.studyAnalytics, name: 'study-analytics', pageBuilder: (context, state) => _slideIn(const StudyAnalyticsScreen())),
 
     // ── Consultation Flow ───────────────────────────────────────────────────
-    GoRoute(
-      path: AppRoutes.consult,
-      name: 'consult',
-      pageBuilder: (context, state) => _slideIn(const ConsultationFlowScreen()),
-    ),
+    GoRoute(path: AppRoutes.consult, name: 'consult', pageBuilder: (context, state) => _slideIn(const ConsultationFlowScreen())),
   ],
-
 
   // ── Global error page ────────────────────────────────────────────────────
   errorPageBuilder: (context, state) => MaterialPage(
@@ -170,21 +130,17 @@ final GoRouter appRouter = GoRouter(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline_rounded,
-                color: Color(0xFFD4A843), size: 60),
+            const Icon(Icons.error_outline_rounded, color: Color(0xFFD4A843), size: 60),
             const SizedBox(height: 16),
-            Text('Page not found',
-                style: TextStyle(
-                    fontFamily: 'PlusJakartaSans',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.grey[800])),
+            Text(
+              'Page not found',
+              style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.grey[800]),
+            ),
             const SizedBox(height: 8),
-            Text(state.error.toString(),
-                style: const TextStyle(
-                    fontFamily: 'PlusJakartaSans',
-                    fontSize: 12,
-                    color: Colors.grey)),
+            Text(
+              state.error.toString(),
+              style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 12, color: Colors.grey),
+            ),
           ],
         ),
       ),
@@ -197,10 +153,7 @@ CustomTransitionPage<void> _slideIn(Widget child) {
   return CustomTransitionPage<void>(
     child: child,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final tween =
-          Tween(begin: const Offset(0, 0.06), end: Offset.zero).chain(
-        CurveTween(curve: Curves.easeOut),
-      );
+      final tween = Tween(begin: const Offset(0, 0.06), end: Offset.zero).chain(CurveTween(curve: Curves.easeOut));
       return FadeTransition(
         opacity: animation,
         child: SlideTransition(position: animation.drive(tween), child: child),

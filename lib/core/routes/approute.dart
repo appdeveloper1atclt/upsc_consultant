@@ -13,9 +13,10 @@ class AppRoutes {
   static const String dailyPtSelect = '/daily-pt-select';
   static const String dailyPtInstructions = '/daily-pt-instructions';
   static const String dailyPtQuiz = '/daily-pt-quiz';
-  static const String dailyPtResult = '/daily-pt-result1';
-  static const String dailyPtPreview = '/daily-pt-preview1';
-  static const String pendingLearning = '/pending-learning1';
-  static const String studyAnalytics = '/study-analytics1';
+  static const String dailyPtResult = '/daily-pt-result';
+  static const String dailyPtPreview = '/daily-pt-preview';
+  static const String pendingLearning = '/pending-learning';
+  static const String studyAnalytics = '/study-analytics';
   static const String consult = '/consult';
+  static const String journey = '/journey';
 }

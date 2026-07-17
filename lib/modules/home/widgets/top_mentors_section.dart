@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/constant/app_text_styles.dart';
+import '../../../core/widgets/shimmer_placeholder.dart';
 
 class MentorData {
   final String name;
@@ -69,7 +70,7 @@ class TopMentorsSection extends StatelessWidget {
                           width: 38,
                           height: 38,
                           fit: BoxFit.cover,
-                          placeholder: (_, __) => Container(width: 38, height: 38, color: AppColors.chipBackground),
+                          placeholder: (_, __) => const ShimmerPlaceholder.circle(size: 38),
                           errorWidget: (_, __, ___) => Container(width: 38, height: 38, color: AppColors.chipBackground),
                         ),
                       ),

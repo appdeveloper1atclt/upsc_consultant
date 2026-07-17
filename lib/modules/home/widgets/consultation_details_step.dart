@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/app_text_styles.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ConsultationDetailsStep extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -134,165 +135,200 @@ class ConsultationDetailsStep extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Full Name Text Field
-              _buildInputLabel('Full Name *'),
-              TextFormField(
-                controller: nameController,
-                style: AppTextStyles.labelLarge,
-                decoration: _getInputFieldDecoration(
-                  hint: 'Enter your full name',
-                  prefixIcon: Icons.person_outline_rounded,
-                ),
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInputLabel('Full Name *'),
+                  TextFormField(
+                    controller: nameController,
+                    style: AppTextStyles.labelLarge,
+                    decoration: _getInputFieldDecoration(
+                      hint: 'Enter your full name',
+                      prefixIcon: Icons.person_outline_rounded,
+                    ),
+                  ),
+                ],
+              ).animate().fade(duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // Mobile Number Text Field
-              _buildInputLabel('Mobile Number *'),
-              TextFormField(
-                controller: phoneController,
-                keyboardType: TextInputType.phone,
-                style: AppTextStyles.labelLarge,
-                decoration: _getInputFieldDecoration(
-                  hint: 'Enter your mobile number',
-                  prefixIcon: Icons.phone_iphone_rounded,
-                ).copyWith(
-                  prefixText: '+91 ',
-                  prefixStyle: const TextStyle(
-                    fontSize: 13.5,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInputLabel('Mobile Number *'),
+                  TextFormField(
+                    controller: phoneController,
+                    keyboardType: TextInputType.phone,
+                    style: AppTextStyles.labelLarge,
+                    decoration: _getInputFieldDecoration(
+                      hint: 'Enter your mobile number',
+                      prefixIcon: Icons.phone_iphone_rounded,
+                    ).copyWith(
+                      prefixText: '+91 ',
+                      prefixStyle: const TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                ],
+              ).animate().fade(delay: 50.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // UPSC Attempt Selection
-              _buildInputLabel('UPSC Attempt *'),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'First Attempt',
-                      isSelected: selectedAttempt == 'First Attempt',
-                      onTap: () => onAttemptChanged('First Attempt'),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Repeat Aspirant',
-                      isSelected: selectedAttempt == 'Repeat Aspirant',
-                      onTap: () => onAttemptChanged('Repeat Aspirant'),
-                    ),
+                  _buildInputLabel('UPSC Attempt *'),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'First Attempt',
+                          isSelected: selectedAttempt == 'First Attempt',
+                          onTap: () => onAttemptChanged('First Attempt'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Repeat Aspirant',
+                          isSelected: selectedAttempt == 'Repeat Aspirant',
+                          onTap: () => onAttemptChanged('Repeat Aspirant'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
+              ).animate().fade(delay: 100.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // Current Stage Selection
-              _buildInputLabel('Current Stage *'),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Prelims',
-                      isSelected: selectedStage == 'Prelims',
-                      onTap: () => onStageChanged('Prelims'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Mains',
-                      isSelected: selectedStage == 'Mains',
-                      onTap: () => onStageChanged('Mains'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Interview',
-                      isSelected: selectedStage == 'Interview',
-                      onTap: () => onStageChanged('Interview'),
-                    ),
+                  _buildInputLabel('Current Stage *'),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Prelims',
+                          isSelected: selectedStage == 'Prelims',
+                          onTap: () => onStageChanged('Prelims'),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Mains',
+                          isSelected: selectedStage == 'Mains',
+                          onTap: () => onStageChanged('Mains'),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Interview',
+                          isSelected: selectedStage == 'Interview',
+                          onTap: () => onStageChanged('Interview'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
+              ).animate().fade(delay: 150.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // Preferred Language Selection
-              _buildInputLabel('Preferred Language *'),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'English',
-                      isSelected: selectedLanguage == 'English',
-                      onTap: () => onLanguageChanged('English'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Hindi',
-                      isSelected: selectedLanguage == 'Hindi',
-                      onTap: () => onLanguageChanged('Hindi'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildSelectionChip(
-                      label: 'Hinglish',
-                      isSelected: selectedLanguage == 'Hinglish',
-                      onTap: () => onLanguageChanged('Hinglish'),
-                    ),
+                  _buildInputLabel('Preferred Language *'),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'English',
+                          isSelected: selectedLanguage == 'English',
+                          onTap: () => onLanguageChanged('English'),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Hindi',
+                          isSelected: selectedLanguage == 'Hindi',
+                          onTap: () => onLanguageChanged('Hindi'),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildSelectionChip(
+                          label: 'Hinglish',
+                          isSelected: selectedLanguage == 'Hinglish',
+                          onTap: () => onLanguageChanged('Hinglish'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
+              ).animate().fade(delay: 200.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // Reason for Consultation Dropdown
-              _buildInputLabel('Reason for Consultation *'),
-              DropdownButtonFormField<String>(
-                initialValue: selectedReason,
-                style: AppTextStyles.labelLarge,
-                decoration: _getInputFieldDecoration(
-                  hint: 'Select reason',
-                  prefixIcon: Icons.help_outline_rounded,
-                ),
-                icon: const Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.textSecondary),
-                items: reasons.map((String reason) {
-                  return DropdownMenuItem<String>(
-                    value: reason,
-                    child: Text(
-                      reason,
-                      style: TextStyle(
-                        color: reason == 'Select reason' ? AppColors.textHint : AppColors.textPrimary,
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInputLabel('Reason for Consultation *'),
+                  DropdownButtonFormField<String>(
+                    initialValue: selectedReason,
+                    style: AppTextStyles.labelLarge,
+                    decoration: _getInputFieldDecoration(
+                      hint: 'Select reason',
+                      prefixIcon: Icons.help_outline_rounded,
                     ),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  if (val != null) {
-                    onReasonChanged(val);
-                  }
-                },
-              ),
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.textSecondary),
+                    items: reasons.map((String reason) {
+                      return DropdownMenuItem<String>(
+                        value: reason,
+                        child: Text(
+                          reason,
+                          style: TextStyle(
+                            color: reason == 'Select reason' ? AppColors.textHint : AppColors.textPrimary,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      if (val != null) {
+                        onReasonChanged(val);
+                      }
+                    },
+                  ),
+                ],
+              ).animate().fade(delay: 250.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
               const SizedBox(height: 16),
 
               // Multiline tell us more
-              _buildInputLabel('Tell us more (Optional)'),
-              TextFormField(
-                controller: noteController,
-                maxLines: 3,
-                maxLength: 300,
-                style: AppTextStyles.labelLarge,
-                decoration: _getInputFieldDecoration(
-                  hint: 'Write your query or concern in detail...',
-                  prefixIcon: Icons.chat_bubble_outline_rounded,
-                ).copyWith(
-                  counterStyle: TextStyle(fontSize: 10, color: AppColors.textSecondary),
-                ),
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInputLabel('Tell us more (Optional)'),
+                  TextFormField(
+                    controller: noteController,
+                    maxLines: 3,
+                    maxLength: 300,
+                    style: AppTextStyles.labelLarge,
+                    decoration: _getInputFieldDecoration(
+                      hint: 'Write your query or concern in detail...',
+                      prefixIcon: Icons.chat_bubble_outline_rounded,
+                    ).copyWith(
+                      counterStyle: TextStyle(fontSize: 10, color: AppColors.textSecondary),
+                    ),
+                  ),
+                ],
+              ).animate().fade(delay: 300.ms, duration: 350.ms).slideY(begin: 0.08, end: 0, curve: Curves.easeOutQuad),
             ],
           ),
         ),

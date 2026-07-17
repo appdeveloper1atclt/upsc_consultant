@@ -5,6 +5,7 @@ import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 import 'package:upsc_consultant/modules/home/widgets/top_mentors_section.dart';
 import 'slot_chip.dart';
 import '../view/payment_screen.dart';
+import '../../../core/widgets/shimmer_placeholder.dart';
 
 class BookingBottomSheet extends StatefulWidget {
   final MentorData mentor;
@@ -57,7 +58,7 @@ class _BookingBottomSheetState extends State<BookingBottomSheet> {
                   width: 50,
                   height: 50,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(width: 50, height: 50, color: AppColors.chipBackground),
+                  placeholder: (context, url) => const ShimmerPlaceholder.circle(size: 50),
                   errorWidget: (context, url, error) => Container(width: 50, height: 50, color: AppColors.chipBackground),
                 ),
               ),

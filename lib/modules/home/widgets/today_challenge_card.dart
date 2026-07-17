@@ -6,6 +6,7 @@ import '../../../../core/constant/app_image.dart';
 import '../../../../core/constant/app_text_styles.dart';
 import '../../../../core/routes/approute.dart';
 import '../../daily_challenge/provider/pt_challenge_controller.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class TodayChallengeCard extends StatelessWidget {
   const TodayChallengeCard({super.key});
@@ -48,7 +49,7 @@ class TodayChallengeCard extends StatelessWidget {
         children: [
           // Header Row (Title & Streak)
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -59,7 +60,7 @@ class TodayChallengeCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontFamily: 'PlusJakartaSans',
-                      fontSize: 14.5,
+                      fontSize: 13.5,
                       fontWeight: FontWeight.w900,
                       color: AppColors.goldLight,
                     ),
@@ -97,7 +98,7 @@ class TodayChallengeCard extends StatelessWidget {
 
           // Main Card Content
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -109,7 +110,7 @@ class TodayChallengeCard extends StatelessWidget {
                       Text(
                         challenge.topic,
                         style: AppTextStyles.textPrimary18bold.copyWith(
-                          fontSize: 17,
+                          fontSize: 15,
                           fontWeight: FontWeight.w900,
                           height: 1.15,
                           color: Colors.white,
@@ -123,60 +124,42 @@ class TodayChallengeCard extends StatelessWidget {
                         style: AppTextStyles.textSecondary12medium.copyWith(fontSize: 11, color: Colors.white.withValues(alpha: 0.65)),
                       ),
 
-                      const SizedBox(height: 10),
-
-                      // Participants Spec
-                      Row(
-                        children: [
-                          const Icon(Icons.people_alt_outlined, size: 13, color: Colors.white70),
-                          const SizedBox(width: 6),
-                          Text(
-                            '${controller.dailyAspirants} Aspirants Attempted',
-                            style: AppTextStyles.textSecondary12medium.copyWith(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white70),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-
-                      // Difficulty Spec
-                      Row(
-                        children: [
-                          const Icon(Icons.bar_chart_rounded, size: 13, color: Colors.white70),
-                          const SizedBox(width: 6),
-                          Text(
-                            'Difficulty: ',
-                            style: AppTextStyles.textSecondary12medium.copyWith(fontSize: 11, color: Colors.white60),
-                          ),
-                          Text(
-                            challenge.difficulty,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: _getDifficultyColor(challenge.difficulty),
+                      const SizedBox(height: 8),
+                      // Combined single line specs
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            const Icon(Icons.bar_chart_rounded, size: 11, color: Colors.white70),
+                            const SizedBox(width: 3),
+                            Text(
+                              challenge.difficulty,
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: _getDifficultyColor(challenge.difficulty),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-
-                      // Top Score Spec
-                      Row(
-                        children: [
-                          const Icon(Icons.emoji_events_outlined, size: 13, color: AppColors.goldLight),
-                          const SizedBox(width: 6),
-                          Text(
-                            'Top Score Today: ',
-                            style: AppTextStyles.textSecondary12medium.copyWith(fontSize: 11, color: Colors.white60),
-                          ),
-                          const Text(
-                            '76/80',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.goldLight,
+                            const SizedBox(width: 8),
+                            const Icon(Icons.people_alt_outlined, size: 11, color: Colors.white70),
+                            const SizedBox(width: 3),
+                            Text(
+                              '${controller.dailyAspirants} Aspirants',
+                              style: const TextStyle(fontSize: 10, color: Colors.white70),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 8),
+                            const Icon(Icons.emoji_events_outlined, size: 11, color: AppColors.goldLight),
+                            const SizedBox(width: 3),
+                            const Text(
+                              'Top: 76/80',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.goldLight,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -189,11 +172,13 @@ class TodayChallengeCard extends StatelessWidget {
                   children: [
                     Image.asset(
                       AppImage.trophyImg,
-                      width: 68,
-                      height: 68,
+                      width: 52,
+                      height: 52,
                       fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 60, color: AppColors.gold),
-                    ),
+                      errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 45, color: AppColors.gold),
+                    )
+                      .animate(onPlay: (controller) => controller.repeat(reverse: true))
+                      .slideY(begin: 0, end: -0.08, duration: 1500.ms, curve: Curves.easeInOutQuad),
                   ],
                 ),
               ],
@@ -228,7 +213,7 @@ class TodayChallengeCard extends StatelessWidget {
 
           // Button Row
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: SizedBox(
               width: double.infinity,
               height: 40,

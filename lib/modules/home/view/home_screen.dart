@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const MentorsScreen(),
                 const ScanTabView(),
                 const TestsScreen(),
-                const ProfileScreen(),
+                ProfileScreen(onTabChanged: _handleNavTap),
               ],
             ),
           ),

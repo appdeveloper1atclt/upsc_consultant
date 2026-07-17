@@ -9,6 +9,7 @@ import '../widgets/consultation_slot_step.dart';
 import '../widgets/consultation_session_step.dart';
 import '../widgets/consultation_payment_step.dart';
 import '../widgets/consultation_confirmed_step.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ConsultationFlowScreen extends StatefulWidget {
   const ConsultationFlowScreen({super.key});
@@ -314,9 +315,10 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
   }
 
   Widget _buildCurrentStepView() {
+    Widget stepWidget;
     switch (_currentStep) {
       case 0:
-        return ConsultationDetailsStep(
+        stepWidget = ConsultationDetailsStep(
           formKey: _formKey,
           nameController: _nameController,
           phoneController: _phoneController,
@@ -331,8 +333,9 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
           onLanguageChanged: (val) => setState(() => _selectedLanguage = val),
           onReasonChanged: (val) => setState(() => _selectedReason = val),
         );
+        break;
       case 1:
-        return ConsultationSlotStep(
+        stepWidget = ConsultationSlotStep(
           selectedDate: _selectedDate,
           selectedTimeSlot: _selectedTimeSlot,
           dates: _dates,
@@ -344,14 +347,16 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
           getFormattedDateShort: _getFormattedDateShort,
           isSameDay: _isSameDay,
         );
+        break;
       case 2:
-        return ConsultationSessionStep(
+        stepWidget = ConsultationSessionStep(
           selectedSessionIndex: _selectedSessionIndex,
           sessions: _sessions,
           onSessionChanged: (val) => setState(() => _selectedSessionIndex = val),
         );
+        break;
       case 3:
-        return ConsultationPaymentStep(
+        stepWidget = ConsultationPaymentStep(
           activeSession: _sessions[_selectedSessionIndex],
           selectedTimeSlot: _selectedTimeSlot,
           formattedDate: _getFormattedDateLong(_selectedDate),
@@ -365,6 +370,7 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
           onPaymentMethodChanged: (val) => setState(() => _selectedPaymentMethod = val),
           getEndTime: _getEndTime,
         );
+        break;
       case 4:
         final activeSession = _sessions[_selectedSessionIndex];
         final double baseAmount = activeSession.price.toDouble();
@@ -373,7 +379,7 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
         final double platformFee = 10.0;
         final double grandTotal = taxableAmount + gst + platformFee;
 
-        return ConsultationConfirmedStep(
+        stepWidget = ConsultationConfirmedStep(
           mentorName: 'Expert Mentor (UPSC Strategic Advisor)',
           bookingId: _bookingId,
           formattedDate: _getFormattedDateLong(_selectedDate),
@@ -391,9 +397,15 @@ class _ConsultationFlowScreenState extends State<ConsultationFlowScreen> {
             );
           },
         );
+        break;
       default:
-        return const SizedBox.shrink();
+        stepWidget = const SizedBox.shrink();
     }
+
+    return stepWidget
+        .animate(key: ValueKey(_currentStep))
+        .fade(duration: 250.ms)
+        .slideX(begin: 0.08, end: 0, curve: Curves.easeOutQuad);
   }
 
   Widget _buildBottomNavbarButton() {
