@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/constant/app_image.dart';
 import 'package:upsc_consultant/core/constant/app_text_styles.dart';
-import '../view/scan_progress_screen.dart';
+import '../view/analysis_screen.dart';
 
 class AnswerScannerBanner extends StatelessWidget {
   final VoidCallback onScanTap;
@@ -46,22 +46,19 @@ class AnswerScannerBanner extends StatelessWidget {
 
           // ── Content on top ───────────────────────────────────────────────
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Headline
-                const Text(
-                  "Scan Your Answer Sheet & Get Analysis",
-                  style: TextStyle(fontSize: 20, height: 1.25, fontWeight: FontWeight.w800, color: Colors.white),
-                ),
+                Text("Scan Your Answer Sheet & Get Analysis", style: AppTextStyles.white20bold.copyWith(fontSize: 17, height: 1.2, fontWeight: FontWeight.w900)),
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
 
                 // Feature chips
                 Wrap(
-                  spacing: 10,
-                  runSpacing: 6,
+                  spacing: 6,
+                  runSpacing: 4,
                   children: const [
                     _CheckItem(label: 'Evaluation'),
                     _CheckItem(label: 'Detailed Feedback'),
@@ -69,21 +66,22 @@ class AnswerScannerBanner extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 18),
+                const SizedBox(height: 12),
 
                 // CTA Button → opens upload sheet
                 SizedBox(
-                  height: 44,
+                  height: 38,
                   child: ElevatedButton.icon(
                     onPressed: () => _showUploadSheet(context),
-                    icon: const Icon(Icons.document_scanner_outlined, size: 16, color: AppColors.primaryDark),
+                    icon: const Icon(Icons.document_scanner_outlined, size: 14, color: AppColors.primaryDark),
                     label: const Text('Scan / Upload PDF'),
                     style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 38),
                       elevation: 0,
                       backgroundColor: AppColors.gold,
                       foregroundColor: AppColors.primaryDark,
-                      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      textStyle: AppTextStyles.primaryDark15extraBold.copyWith(fontSize: 12, fontWeight: FontWeight.bold),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
                 ),
@@ -160,7 +158,7 @@ class _UploadBottomSheetState extends State<UploadBottomSheet> {
     final result = await Navigator.push<bool>(
       context,
       MaterialPageRoute(
-        builder: (context) => ScanProgressScreen(fileName: name, fileType: type),
+        builder: (context) => AnalysisScreen(fileName: name, fileType: type),
       ),
     );
     if (result == true && widget.onUploadSuccess != null) {
@@ -187,12 +185,9 @@ class _UploadBottomSheetState extends State<UploadBottomSheet> {
           ),
           const SizedBox(height: 20),
 
-          const Text(
-            'Upload Answer Sheet',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
-          ),
+          Text('Upload Answer Sheet', style: AppTextStyles.textPrimary16bold.copyWith(fontWeight: FontWeight.w800)),
           const SizedBox(height: 4),
-          const Text('Image (JPG/PNG) ya PDF select karo', style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+          Text('Image (JPG/PNG) ya PDF select karo', style: AppTextStyles.textSecondary13normal.copyWith(fontSize: 12)),
           const SizedBox(height: 24),
 
           if (_isLoading)
@@ -252,7 +247,7 @@ class _UploadBottomSheetState extends State<UploadBottomSheet> {
                       child: Text(
                         f.path.split('/').last,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 12, color: AppColors.textPrimary),
+                        style: AppTextStyles.labelMedium.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ],
@@ -297,10 +292,10 @@ class _UploadOption extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               label,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
+              style: AppTextStyles.textPrimary12semibold.copyWith(color: color, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 2),
-            Text(subtitle, style: const TextStyle(fontSize: 9.5, color: AppColors.textSecondary)),
+            Text(subtitle, style: AppTextStyles.textSecondary11semibold.copyWith(fontSize: 9.5, fontWeight: FontWeight.normal)),
           ],
         ),
       ),

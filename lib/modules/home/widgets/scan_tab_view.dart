@@ -3,6 +3,7 @@ import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/app_text_styles.dart';
 import 'answer_scanner.dart';
 import 'scanner_inttulation.dart';
+import '../view/analysis_screen.dart';
 
 class ScanTabView extends StatelessWidget {
   const ScanTabView({super.key});
@@ -42,7 +43,6 @@ class ScanTabView extends StatelessWidget {
             decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(20), boxShadow: AppShadows.card),
             child: Column(
               children: [
-                // ── Premium animated scanner illustration ──────────────
                 const AnimatedScannerIllustration(),
                 const SizedBox(height: 16),
                 const Text(
@@ -77,69 +77,92 @@ class ScanTabView extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: evaluations.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 10),
+            separatorBuilder: (_, _) => const SizedBox(height: 10),
             itemBuilder: (context, index) {
               final eval = evaluations[index];
-              return Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(16), boxShadow: AppShadows.card),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: const BoxDecoration(color: AppColors.premiumBadge, shape: BoxShape.circle),
-                      child: const Icon(Icons.description_outlined, color: AppColors.goldMuted, size: 20),
-                    ),
-                    const SizedBox(width: 14),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              final isCompleted = eval.status == 'Evaluation Completed';
+              return GestureDetector(
+                onTap: isCompleted
+                    ? () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => AnalysisScreen(
+                              fileName: eval.title,
+                              fileType: 'pdf',
+                            ),
+                          ),
+                        )
+                    : null,
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.card,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: AppShadows.card,
+                    border: isCompleted ? Border.all(color: AppColors.gold.withValues(alpha: 0.2)) : null,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(color: AppColors.premiumBadge, shape: BoxShape.circle),
+                        child: const Icon(Icons.description_outlined, color: AppColors.goldMuted, size: 20),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              eval.title,
+                              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    eval.date,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 10, color: AppColors.textHint),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Container(
+                                  width: 4,
+                                  height: 4,
+                                  decoration: const BoxDecoration(color: AppColors.textHint, shape: BoxShape.circle),
+                                ),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    eval.status,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: eval.color),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
+                          const Text('Score', style: TextStyle(fontSize: 9, color: AppColors.textSecondary)),
                           Text(
-                            eval.title,
-                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                            eval.score,
+                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
                           ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  eval.date,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(fontSize: 10, color: AppColors.textHint),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Container(
-                                width: 4,
-                                height: 4,
-                                decoration: const BoxDecoration(color: AppColors.textHint, shape: BoxShape.circle),
-                              ),
-                              const SizedBox(width: 8),
-                              Flexible(
-                                child: Text(
-                                  eval.status,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: eval.color),
-                                ),
-                              ),
-                            ],
-                          ),
+                          if (isCompleted) ...[
+                            const SizedBox(height: 4),
+                            const Icon(Icons.chevron_right_rounded, size: 16, color: AppColors.gold),
+                          ],
                         ],
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Text('Score', style: TextStyle(fontSize: 9, color: AppColors.textSecondary)),
-                        Text(
-                          eval.score,
-                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },

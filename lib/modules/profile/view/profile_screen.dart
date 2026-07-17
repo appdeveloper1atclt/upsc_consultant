@@ -20,11 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           const Text(
             'Student Dashboard',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyles.textPrimary22bold,
           ),
           const SizedBox(height: 18),
           Container(
@@ -41,42 +37,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   backgroundColor: AppColors.primary,
                   child: const Text(
                     'AJ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.white20bold,
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Abhishek Jha',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.textPrimary,
-                        ),
+                        style: AppTextStyles.textPrimary16bold,
                       ),
-                      SizedBox(height: 2),
-                      Text(
+                      const SizedBox(height: 2),
+                      const Text(
                         'Aspirant ID: IAS2027-391',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: AppColors.textSecondary,
-                        ),
+                        style: AppTextStyles.textSecondary11semibold,
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'Target Attempt: UPSC CSE 2027',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.goldMuted,
-                        ),
+                        style: AppTextStyles.goldMuted8semibold.copyWith(fontSize: 11),
                       ),
                     ],
                   ),
@@ -103,22 +84,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Premium Membership Active',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.textPrimary,
-                        ),
+                        style: AppTextStyles.textPrimary13bold,
                       ),
-                      SizedBox(height: 2),
+                      const SizedBox(height: 2),
                       Text(
                         'Unlimited AI answers scanning and mock feedback.',
-                        style: TextStyle(
-                          fontSize: 10.5,
-                          color: AppColors.textSecondary,
-                        ),
+                        style: AppTextStyles.textSecondary11semibold.copyWith(fontSize: 10.5),
                       ),
                     ],
                   ),
@@ -129,11 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 24),
           const Text(
             'Settings & Help',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyles.textPrimary16bold,
           ),
           const SizedBox(height: 10),
           SettingsItem(

@@ -40,13 +40,13 @@ class TopMentorsSection extends StatelessWidget {
               onPressed: onViewAllTap,
               child: const Text(
                 'View All',
-                style: TextStyle(color: AppColors.goldMuted, fontWeight: FontWeight.w700, fontSize: 12),
+                style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold, fontSize: 11),
               ),
             ),
           ],
         ),
         SizedBox(
-          height: 168,
+          height: 152,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: mentors.length,
@@ -56,8 +56,8 @@ class TopMentorsSection extends StatelessWidget {
               return GestureDetector(
                 onTap: () => onMentorTap(m),
                 child: Container(
-                  width: 128,
-                  padding: const EdgeInsets.all(12),
+                  width: 118,
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(16), boxShadow: AppShadows.card),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,42 +66,36 @@ class TopMentorsSection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50),
                         child: CachedNetworkImage(
                           imageUrl: m.photoUrl,
-                          width: 44,
-                          height: 44,
+                          width: 38,
+                          height: 38,
                           fit: BoxFit.cover,
-                          placeholder: (_, __) => Container(width: 44, height: 44, color: AppColors.chipBackground),
-                          errorWidget: (_, __, ___) => Container(width: 44, height: 44, color: AppColors.chipBackground),
+                          placeholder: (_, __) => Container(width: 38, height: 38, color: AppColors.chipBackground),
+                          errorWidget: (_, __, ___) => Container(width: 38, height: 38, color: AppColors.chipBackground),
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(m.name, style: AppTextStyles.cardTitle.copyWith(fontSize: 12), maxLines: 1, overflow: TextOverflow.ellipsis),
-                      const SizedBox(height: 2),
-                      Text(m.expertise, style: AppTextStyles.cardSubtitle.copyWith(fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
+                      Text(m.name, style: AppTextStyles.cardTitle.copyWith(fontSize: 11.5), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      const SizedBox(height: 1),
+                      Text(m.expertise, style: AppTextStyles.cardSubtitle.copyWith(fontSize: 9.5), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      const SizedBox(height: 3),
                       Row(
                         children: [
                           const Icon(Icons.star_rounded, size: 12, color: AppColors.gold),
                           const SizedBox(width: 2),
-                          Text(
-                            '${m.rating}',
-                            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
-                          ),
+                          Text('${m.rating}', style: AppTextStyles.textPrimary10bold),
                           const SizedBox(width: 4),
                           Expanded(
-                            child: Text(m.studentsLabel, style: AppTextStyles.caption.copyWith(fontSize: 9), overflow: TextOverflow.ellipsis),
+                            child: Text(m.studentsLabel, style: AppTextStyles.caption.copyWith(fontSize: 8.5), overflow: TextOverflow.ellipsis),
                           ),
                         ],
                       ),
                       const Spacer(),
                       Container(
                         width: double.infinity,
-                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        padding: const EdgeInsets.symmetric(vertical: 3),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(color: AppColors.premiumBadge, borderRadius: BorderRadius.circular(8)),
-                        child: Text(
-                          '₹${m.price} / session',
-                          style: const TextStyle(fontSize: 9.5, fontWeight: FontWeight.w800, color: AppColors.goldMuted),
-                        ),
+                        child: Text('₹${m.price} / session', style: AppTextStyles.goldMuted95bold.copyWith(fontSize: 9)),
                       ),
                     ],
                   ),

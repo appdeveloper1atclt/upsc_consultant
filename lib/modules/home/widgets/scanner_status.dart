@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/constant/app_image.dart';
+import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 class ScannerStatsRow extends StatelessWidget {
   const ScannerStatsRow({super.key});
@@ -24,10 +25,13 @@ class ScannerStatsRow extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     s.value,
-                    style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
+                    style: AppTextStyles.textPrimary13bold.copyWith(fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(height: 1),
-                  Text(s.label, style: const TextStyle(fontSize: 9, color: AppColors.textSecondary)),
+                  Text(
+                    s.label,
+                    style: AppTextStyles.textSecondary11semibold.copyWith(fontSize: 9, fontWeight: FontWeight.normal),
+                  ),
                 ],
               ),
             ),

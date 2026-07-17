@@ -43,11 +43,9 @@ class SettingsItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     label,
-                    style: TextStyle(
-                      fontSize: 13.5,
-                      fontWeight: FontWeight.w600,
-                      color: isDestructive ? Colors.red : AppColors.textPrimary,
-                    ),
+                    style: isDestructive
+                        ? AppTextStyles.textPrimary14semibold.copyWith(color: Colors.red, fontSize: 13.5)
+                        : AppTextStyles.textPrimary14semibold.copyWith(fontSize: 13.5),
                   ),
                 ),
                 const Icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int currentIndex;
@@ -15,13 +16,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(26),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(.08), blurRadius: 30, offset: const Offset(0, 10))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 30, offset: const Offset(0, 10))],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _item(Icons.home_rounded, 'Home', 0),
-          _item(Icons.newspaper_rounded, 'Current Affairs', 1),
+          _item(Icons.supervised_user_circle_rounded, 'Mentors', 1),
           _scanItem(2),
           _item(Icons.assignment_outlined, 'Tests', 3),
           _item(Icons.person_outline_rounded, 'Profile', 4),
@@ -43,7 +44,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
           const SizedBox(height: 3),
           Text(
             title,
-            style: TextStyle(fontSize: 9.5, fontWeight: FontWeight.w700, color: selected ? AppColors.gold : AppColors.textSecondary),
+            style: selected ? AppTextStyles.gold95bold : AppTextStyles.textSecondary95bold,
           ),
         ],
       ),

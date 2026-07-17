@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/constant/app_image.dart';
-import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 class _QuickAction {
   final String title;
   final String icon;
-  final double iconSize;
   final VoidCallback onTap;
+  final List<Color> gradientColors;
 
-  const _QuickAction({required this.title, required this.icon, required this.onTap, this.iconSize = 52});
+  const _QuickAction({required this.title, required this.icon, required this.onTap, required this.gradientColors});
 }
 
 class QuickActionsGrid extends StatelessWidget {
@@ -19,6 +17,7 @@ class QuickActionsGrid extends StatelessWidget {
   final VoidCallback onMentorConnectTap;
   final VoidCallback onPrelimsTap;
   final VoidCallback onMainsTap;
+  final VoidCallback onViewAllTap;
 
   const QuickActionsGrid({
     super.key,
@@ -28,28 +27,91 @@ class QuickActionsGrid extends StatelessWidget {
     required this.onMentorConnectTap,
     required this.onPrelimsTap,
     required this.onMainsTap,
+    required this.onViewAllTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final actions = [
-      _QuickAction(title: 'Current Affairs', icon: AppImage.CurrentAffairsImg, iconSize: 46, onTap: onCurrentAffairsTap),
-      _QuickAction(title: 'Previous Year\nQuestions', icon: AppImage.pyqImg, onTap: onPyqTap),
-      _QuickAction(title: 'MCQ Practice', icon: AppImage.mcqImg, onTap: onMcqTap),
-      _QuickAction(title: 'Mentor Connect', icon: AppImage.mentorImg, onTap: onMentorConnectTap),
-      _QuickAction(title: 'Prelims', icon: AppImage.prelimsImg, onTap: onPrelimsTap),
-      _QuickAction(title: 'Mains', icon: AppImage.MainsImg, onTap: onMainsTap),
+      _QuickAction(
+        title: 'Current Affairs',
+        icon: AppImage.CurrentAffairsImg,
+        onTap: onCurrentAffairsTap,
+        gradientColors: const [Color(0xFFE0F2FE), Color(0xFF93C5FD)], // Richer Sky Blue
+      ),
+      _QuickAction(
+        title: 'Previous Year\nQuestions',
+        icon: AppImage.pyqImg,
+        onTap: onPyqTap,
+        gradientColors: const [Color(0xFFFEF3C7), Color(0xFFFCD34D)], // Richer Golden Amber
+      ),
+      _QuickAction(
+        title: 'MCQ Practice',
+        icon: AppImage.mcqImg,
+        onTap: onMcqTap,
+        gradientColors: const [Color(0xFFFEE2E2), Color(0xFFFCA5A5)], // Richer Rose Pink
+      ),
+      _QuickAction(
+        title: 'Mentor Connect',
+        icon: AppImage.mentorImg,
+        onTap: onMentorConnectTap,
+        gradientColors: const [Color(0xFFF3E8FF), Color(0xFFD8B4FE)], // Richer Purple
+      ),
+      _QuickAction(
+        title: 'Prelims',
+        icon: AppImage.prelimsImg,
+        onTap: onPrelimsTap,
+        gradientColors: const [Color(0xFFEEF2FF), Color(0xFFC7D2FE)], // Soft Indigo/Blue (matches Cap)
+      ),
+      _QuickAction(
+        title: 'Mains',
+        icon: AppImage.MainsImg,
+        onTap: onMainsTap,
+        gradientColors: const [Color(0xFFFFEAD2), Color(0xFFFFB070)], // Warm Peach/Orange (matches Quill)
+      ),
     ];
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: actions.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 6, crossAxisSpacing: 12, childAspectRatio: 0.95),
-      itemBuilder: (context, index) {
-        final action = actions[index];
-        return _ActionCard(action: action);
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Section Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Quick Access',
+              style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, fontWeight: FontWeight.w900, color: Color(0xFF0F2537)),
+            ),
+            TextButton(
+              onPressed: onViewAllTap,
+              style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(0, 0), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+              child: const Text(
+                'View All',
+                style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold, fontSize: 11),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+
+        // Grid View of Action Cards
+        GridView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: actions.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 10,
+            childAspectRatio: 0.95, // Matches the mockup's card shape (taller, almost square)
+          ),
+          itemBuilder: (context, index) {
+            final action = actions[index];
+            return _ActionCard(action: action);
+          },
+        ),
+      ],
     );
   }
 }
@@ -78,29 +140,26 @@ class _ActionCardState extends State<_ActionCard> {
         scale: _pressed ? 0.94 : 1.0,
         duration: const Duration(milliseconds: 120),
         child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
           decoration: BoxDecoration(
-            color: AppColors.card,
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: widget.action.gradientColors),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border, width: 1),
-            boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.06), blurRadius: 12, offset: const Offset(0, 4))],
+            border: Border.all(color: widget.action.gradientColors.last.withValues(alpha: 0.5), width: 1.0),
+            boxShadow: [BoxShadow(color: widget.action.gradientColors.last.withValues(alpha: 0.25), blurRadius: 10, offset: const Offset(0, 4))],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Icon — no background, fills the space
-              Image.asset(widget.action.icon, width: widget.action.iconSize, height: widget.action.iconSize, fit: BoxFit.cover),
-
-              const SizedBox(height: 8),
-
-              // Title
+              Image.asset(widget.action.icon, width: 65, height: 65, fit: BoxFit.cover),
+              const SizedBox(height: 4),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Text(
                   widget.action.title,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.labelMedium.copyWith(fontWeight: FontWeight.w700, color: AppColors.textPrimary, fontSize: 10.5, height: 1.25),
+                  style: const TextStyle(fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w900, color: Color(0xFF0F2537), fontSize: 11, height: 1.1),
                 ),
               ),
             ],

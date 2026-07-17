@@ -17,4 +17,10 @@ class AppImage {
   static const String scanImg = "assets/images/scanicon.png";
   static const String pyqImg = "assets/images/pyq1.png";
   static const String trophyImg = "assets/images/trophy.png";
+  static const String onboardAnimationImg1 = "assets/images/copy.png";
+  static const String onboardAnimationImg2 = "assets/images/copy2.png";
+  static const String onboardAnimationImg3 = "assets/images/copy3.png";
+  static const String onboardAnimationImg4 = "assets/images/mentor1.png";
+  static const String googleImg = "assets/images/google.png";
+  static const String stumbhImg = "assets/images/stumbh.png";
 }

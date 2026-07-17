@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/app_image.dart';
+import '../../../core/constant/app_text_styles.dart';
 import '../../../core/routes/approute.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   height: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    boxShadow: [BoxShadow(color: AppColors.gold.withOpacity(0.3), blurRadius: 20, spreadRadius: 2)],
+                    boxShadow: [BoxShadow(color: AppColors.gold.withValues(alpha: 0.3), blurRadius: 20, spreadRadius: 2)],
                   ),
                   child: ClipOval(
                     child: Image.asset(
@@ -111,12 +112,12 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 
                 const Text(
                   'Welcome Back!',
-                  style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 26, fontWeight: FontWeight.w800, color: Color(0xFF0A1628)),
+                  style: AppTextStyles.textPrimary26bold,
                 ),
                 const SizedBox(height: 6),
                 const Text(
                   'Login to continue your UPSC journey',
-                  style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF718096)),
+                  style: AppTextStyles.textHint14normal,
                   textAlign: TextAlign.center,
                 ),
 
@@ -127,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Mobile Number',
-                    style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF0A1628), letterSpacing: 0.3),
+                    style: AppTextStyles.textPrimary13bold,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -138,16 +139,14 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: _mobileHasFocus ? AppColors.gold : const Color(0xFFE2D9CC), width: _mobileHasFocus ? 1.5 : 1),
-                    color: const Color(0xFFFCFAF7),
-                    boxShadow: _mobileHasFocus ? [BoxShadow(color: AppColors.gold.withOpacity(0.12), blurRadius: 10)] : [],
                   ),
                   child: Row(
                     children: [
-                      // Country code
+                      // Flag
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 15),
                         decoration: BoxDecoration(
-                          border: Border(right: BorderSide(color: _mobileHasFocus ? AppColors.gold.withOpacity(0.3) : const Color(0xFFE2D9CC), width: 1)),
+                          border: Border(right: BorderSide(color: _mobileHasFocus ? AppColors.gold.withValues(alpha: 0.3) : const Color(0xFFE2D9CC), width: 1)),
                         ),
                         child: const Row(
                           children: [
@@ -155,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             SizedBox(width: 6),
                             Text(
                               '+91',
-                              style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF0A1628)),
+                              style: AppTextStyles.textPrimary14semibold,
                             ),
                           ],
                         ),
@@ -169,17 +168,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           keyboardType: TextInputType.phone,
                           maxLength: 10,
                           cursorColor: AppColors.gold,
-                          style: const TextStyle(
-                            fontFamily: 'PlusJakartaSans',
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF0A1628),
-                            letterSpacing: 1,
-                          ),
+                          style: AppTextStyles.textPrimary14semibold.copyWith(fontSize: 15, letterSpacing: 1),
                           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           decoration: const InputDecoration(
                             hintText: 'Enter mobile number',
-                            hintStyle: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, color: Color(0xFFB0B8C5), fontWeight: FontWeight.w400),
+                            hintStyle: AppTextStyles.greyB0B8C5_14normal,
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
@@ -203,20 +196,14 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(colors: [Color(0xFFB8912E), Color(0xFFD4A843), Color(0xFFE8C060)]),
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(color: AppColors.gold.withOpacity(0.3), blurRadius: 14, offset: const Offset(0, 4))],
+                      boxShadow: [BoxShadow(color: AppColors.gold.withValues(alpha: 0.3), blurRadius: 14, offset: const Offset(0, 4))],
                     ),
                     child: Center(
                       child: _isLoading
                           ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
                           : const Text(
                               'Send OTP',
-                              style: TextStyle(
-                                fontFamily: 'PlusJakartaSans',
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                letterSpacing: 0.5,
-                              ),
+                              style: AppTextStyles.white15medium,
                             ),
                     ),
                   ),
@@ -232,13 +219,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       padding: EdgeInsets.symmetric(horizontal: 14),
                       child: Text(
                         'OR',
-                        style: TextStyle(
-                          fontFamily: 'PlusJakartaSans',
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFFB0B8C5),
-                          letterSpacing: 1.5,
-                        ),
+                        style: AppTextStyles.greyB0B8C5_11normal,
                       ),
                     ),
                     Expanded(child: Container(height: 1, color: const Color(0xFFEDE5D8))),
@@ -257,16 +238,16 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: const Color(0xFFE2D9CC), width: 1),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8, offset: const Offset(0, 2))],
+                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8, offset: const Offset(0, 2))],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(width: 22, height: 22, child: CustomPaint(painter: _GoogleIconPainter())),
+                        Image.asset(AppImage.googleImg, height: 16, width: 16),
                         const SizedBox(width: 10),
                         const Text(
                           'Continue with Google',
-                          style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF0A1628)),
+                          style: AppTextStyles.textPrimary14semibold,
                         ),
                       ],
                     ),
@@ -278,18 +259,18 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                 // ── Terms ────────────────────────────────────────────
                 RichText(
                   textAlign: TextAlign.center,
-                  text: const TextSpan(
-                    style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 11, color: Color(0xFFB0B8C5), height: 1.6),
+                  text: TextSpan(
+                    style: AppTextStyles.greyB0B8C5_11normal,
                     children: [
-                      TextSpan(text: 'By continuing, you agree to our '),
+                      const TextSpan(text: 'By continuing, you agree to our '),
                       TextSpan(
                         text: 'Terms & Conditions',
-                        style: TextStyle(color: Color(0xFFD4A843), fontWeight: FontWeight.w600),
+                        style: AppTextStyles.goldLight13medium.copyWith(color: const Color(0xFFD4A843), fontWeight: FontWeight.w600, fontSize: 11),
                       ),
-                      TextSpan(text: ' and '),
+                      const TextSpan(text: ' and '),
                       TextSpan(
                         text: 'Privacy Policy',
-                        style: TextStyle(color: Color(0xFFD4A843), fontWeight: FontWeight.w600),
+                        style: AppTextStyles.goldLight13medium.copyWith(color: const Color(0xFFD4A843), fontWeight: FontWeight.w600, fontSize: 11),
                       ),
                     ],
                   ),
@@ -303,34 +284,4 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       ),
     );
   }
-}
-
-class _GoogleIconPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final cx = size.width / 2;
-    final cy = size.height / 2;
-    final r = size.width / 2 - 1;
-
-    const colors = [Color(0xFF4285F4), Color(0xFF34A853), Color(0xFFFBBC05), Color(0xFFEA4335)];
-
-    final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.5
-      ..strokeCap = StrokeCap.round;
-
-    paint.color = colors[0];
-    canvas.drawArc(Rect.fromCircle(center: Offset(cx, cy), radius: r * 0.8), -1.5, 1.5, false, paint);
-    paint.color = colors[3];
-    canvas.drawArc(Rect.fromCircle(center: Offset(cx, cy), radius: r * 0.8), 0, 1.57, false, paint);
-    paint.color = colors[2];
-    canvas.drawArc(Rect.fromCircle(center: Offset(cx, cy), radius: r * 0.8), 1.57, 1.57, false, paint);
-    paint.color = colors[1];
-    canvas.drawArc(Rect.fromCircle(center: Offset(cx, cy), radius: r * 0.8), 3.14, 1.64, false, paint);
-    paint.color = colors[0];
-    canvas.drawLine(Offset(cx, cy), Offset(cx + r * 0.75, cy), paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter old) => false;
 }

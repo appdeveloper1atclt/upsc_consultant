@@ -26,6 +26,13 @@ dependencies:
   cached_network_image: ^3.4.1
   image_picker: ^1.1.2
   file_picker: ^8.1.7
+  fl_chart: ^1.2.0
+  easy_stepper: ^1.1.0
+  modal_bottom_sheet: ^3.0.0
+  auto_size_text: ^3.0.0
+  glassmorphism_ui: ^0.3.0
+  confetti: ^0.8.0
+  animate_do: ^5.1.0
   
 dev_dependencies:
   flutter_test:

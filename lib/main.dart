@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'core/routes/app_router.dart';
 import 'core/theme/app_theme.dart';
 
+import 'package:provider/provider.dart';
+import 'modules/daily_challenge/provider/pt_challenge_controller.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -13,8 +16,16 @@ void main() {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
-  runApp(const UPSCConsultantApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => PtChallengeController()),
+      ],
+      child: const UPSCConsultantApp(),
+    ),
+  );
 }
+
 
 class UPSCConsultantApp extends StatelessWidget {
   const UPSCConsultantApp({super.key});

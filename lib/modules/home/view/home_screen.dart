@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/widgets/bottomnavigation_bar.dart';
 import 'package:upsc_consultant/core/widgets/custom_appbar.dart';
-import 'package:upsc_consultant/modules/current_affairs/view/current_affairs_screen.dart';
 import 'package:upsc_consultant/modules/home/widgets/home_tab_view.dart';
 import 'package:upsc_consultant/modules/home/widgets/scan_tab_view.dart';
 import 'package:upsc_consultant/modules/profile/view/profile_screen.dart';
 import 'package:upsc_consultant/modules/tests/view/tests_screen.dart';
+import '../../mentors/view/mentors_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               index: currentIndex,
               children: [
                 HomeTabView(onNavTap: _handleNavTap),
-                const CurrentAffairsScreen(),
+                const MentorsScreen(),
                 const ScanTabView(),
                 const TestsScreen(),
                 const ProfileScreen(),

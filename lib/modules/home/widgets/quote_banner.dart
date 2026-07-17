@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 class QuoteBanner extends StatelessWidget {
   const QuoteBanner({super.key});
@@ -18,19 +19,19 @@ class QuoteBanner extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          Container(height: 92, color: AppColors.primaryDark.withOpacity(.45)),
+          Container(height: 92, color: AppColors.primaryDark.withValues(alpha: 0.45)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   '"Discipline Today, Freedom Tomorrow."',
-                  style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white, fontStyle: FontStyle.italic),
+                  style: AppTextStyles.white14bold.copyWith(fontStyle: FontStyle.italic),
                 ),
-                SizedBox(height: 4),
-                Text('Your Dream. Our Guidance. Your Success.', style: TextStyle(fontSize: 10, color: Color(0xE6FFFFFF))),
+                const SizedBox(height: 4),
+                Text('Your Dream. Our Guidance. Your Success.', style: AppTextStyles.white10normal.copyWith(color: const Color(0xE6FFFFFF))),
               ],
             ),
           ),

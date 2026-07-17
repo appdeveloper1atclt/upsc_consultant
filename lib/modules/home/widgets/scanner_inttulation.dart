@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 /// Premium animated scanner illustration for the upload banner.
 /// Shows a scanning line, pulsing glow, sparkles, and a "Scanning..." badge.
@@ -8,12 +9,10 @@ class AnimatedScannerIllustration extends StatefulWidget {
   const AnimatedScannerIllustration({super.key});
 
   @override
-  State<AnimatedScannerIllustration> createState() =>
-      _AnimatedScannerIllustrationState();
+  State<AnimatedScannerIllustration> createState() => _AnimatedScannerIllustrationState();
 }
 
-class _AnimatedScannerIllustrationState
-    extends State<AnimatedScannerIllustration> with TickerProviderStateMixin {
+class _AnimatedScannerIllustrationState extends State<AnimatedScannerIllustration> with TickerProviderStateMixin {
   // 4 separate controllers for independent animation timings
   late final AnimationController _scanController;
   late final AnimationController _pulseController;
@@ -25,28 +24,16 @@ class _AnimatedScannerIllustrationState
     super.initState();
 
     // Scanner line — sweeps top to bottom and back
-    _scanController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2200),
-    )..repeat(reverse: true);
+    _scanController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2200))..repeat(reverse: true);
 
     // Outer gold glow — slow breathe effect
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..repeat(reverse: true);
+    _pulseController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1800))..repeat(reverse: true);
 
     // Sparkle ring — rotates continuously
-    _sparkleController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    )..repeat();
+    _sparkleController = AnimationController(vsync: this, duration: const Duration(seconds: 5))..repeat();
 
     // "Scanning." → ".." → "..." cycling dots
-    _dotController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat();
+    _dotController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))..repeat();
   }
 
   @override
@@ -111,13 +98,7 @@ class _AnimatedScannerIllustrationState
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: AppColors.border, width: 1.2),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primary.withValues(alpha: 0.15),
-                  blurRadius: 20,
-                  offset: const Offset(0, 6),
-                ),
-              ],
+              boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.15), blurRadius: 20, offset: const Offset(0, 6))],
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
@@ -153,21 +134,10 @@ class _AnimatedScannerIllustrationState
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: const LinearGradient(
-                      colors: [
-                        Colors.transparent,
-                        Color(0xFF00D4FF),
-                        Color(0xFF00D4FF),
-                        Colors.transparent,
-                      ],
+                      colors: [Colors.transparent, Color(0xFF00D4FF), Color(0xFF00D4FF), Colors.transparent],
                       stops: [0.0, 0.3, 0.7, 1.0],
                     ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x9900D4FF),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
+                    boxShadow: const [BoxShadow(color: Color(0x9900D4FF), blurRadius: 10, spreadRadius: 2)],
                   ),
                 ),
               );
@@ -189,24 +159,10 @@ class _AnimatedScannerIllustrationState
                     height: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      gradient: const LinearGradient(
-                        colors: [AppColors.gold, AppColors.goldLight],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.gold.withValues(alpha: 0.5),
-                          blurRadius: 10,
-                          spreadRadius: 1,
-                        ),
-                      ],
+                      gradient: const LinearGradient(colors: [AppColors.gold, AppColors.goldLight], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                      boxShadow: [BoxShadow(color: AppColors.gold.withValues(alpha: 0.5), blurRadius: 10, spreadRadius: 1)],
                     ),
-                    child: const Icon(
-                      Icons.search_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
+                    child: const Icon(Icons.search_rounded, color: Colors.white, size: 18),
                   ),
                 );
               },
@@ -222,22 +178,12 @@ class _AnimatedScannerIllustrationState
                 final dotCount = (_dotController.value * 3).floor() + 1;
                 final dots = '.' * dotCount;
                 return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(
-                      color: AppColors.gold.withValues(alpha: 0.4),
-                      width: 1,
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
+                    border: Border.all(color: AppColors.gold.withValues(alpha: 0.4), width: 1),
+                    boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10, offset: Offset(0, 2))],
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -246,20 +192,12 @@ class _AnimatedScannerIllustrationState
                       Container(
                         width: 6,
                         height: 6,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFF00D4FF),
-                        ),
+                        decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF00D4FF)),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         'Scanning$dots',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 10,
-                          color: AppColors.primary,
-                          letterSpacing: 0.3,
-                        ),
+                        style: AppTextStyles.primary10bold.copyWith(letterSpacing: 0.3),
                       ),
                     ],
                   ),
@@ -277,10 +215,7 @@ class _AnimatedScannerIllustrationState
     return Container(
       width: width,
       height: 5,
-      decoration: BoxDecoration(
-        color: AppColors.border,
-        borderRadius: BorderRadius.circular(4),
-      ),
+      decoration: BoxDecoration(color: AppColors.border, borderRadius: BorderRadius.circular(4)),
     );
   }
 }
@@ -305,18 +240,13 @@ class _SparkleRing extends StatelessWidget {
           final angle = (2 * pi * i / count) + (2 * pi * progress);
           final dx = radius * cos(angle);
           final dy = radius * sin(angle);
-          final opacity =
-              (sin(2 * pi * progress + i) * 0.5 + 0.5).clamp(0.2, 1.0);
+          final opacity = (sin(2 * pi * progress + i) * 0.5 + 0.5).clamp(0.2, 1.0);
           return Positioned(
             left: 100 + dx - 5,
             top: 100 + dy - 5,
             child: Opacity(
               opacity: opacity,
-              child: Icon(
-                Icons.star_rounded,
-                size: i.isEven ? 8 : 6,
-                color: i.isEven ? AppColors.gold : AppColors.goldLight,
-              ),
+              child: Icon(Icons.star_rounded, size: i.isEven ? 8 : 6, color: i.isEven ? AppColors.gold : AppColors.goldLight),
             ),
           );
         }),
