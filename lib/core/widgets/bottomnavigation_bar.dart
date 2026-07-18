@@ -45,7 +45,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
             imagePath,
             width: 22,
             height: 22,
-            color: selected ? const Color(0xFF7C3AED) : AppColors.textSecondary,
+            color: selected ? AppColors.gold : AppColors.textSecondary,
           ),
           const SizedBox(height: 4),
           Text(
@@ -54,7 +54,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
               fontFamily: 'PlusJakartaSans',
               fontSize: 9.5,
               fontWeight: FontWeight.bold,
-              color: selected ? const Color(0xFF7C3AED) : AppColors.textSecondary,
+              color: selected ? AppColors.gold : AppColors.textSecondary,
             ),
           ),
         ],
@@ -62,7 +62,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
     );
   }
 
-  // Centre purple "scan" CTA, matching the original screenshot.
+  // Centre gold "scan" CTA, matching the original screenshot.
   Widget _scanItem(int index) {
     return InkWell(
       borderRadius: BorderRadius.circular(24),
@@ -70,13 +70,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Container(
         width: 46,
         height: 46,
-        decoration: const BoxDecoration(color: Color(0xFF7C3AED), shape: BoxShape.circle),
+        decoration: const BoxDecoration(color: AppColors.gold, shape: BoxShape.circle),
         child: Center(
           child: Image.asset(
             AppImage.bottomNavScan,
             width: 22,
             height: 22,
-            color: Colors.white,
+            color: AppColors.primaryDark,
           ),
         ),
       ),

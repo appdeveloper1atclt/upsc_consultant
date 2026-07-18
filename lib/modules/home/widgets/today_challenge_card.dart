@@ -131,22 +131,33 @@ class TodayChallengeCard extends StatelessWidget {
                       const SizedBox(height: 3),
 
                       // Questions count & Time specs
-                      Row(
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          const Icon(Icons.person_outline_rounded, size: 12, color: AppColors.textSecondary),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${challenge.totalQuestions} Questions',
-                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.person_outline_rounded, size: 12, color: AppColors.textSecondary),
+                              SizedBox(width: 4),
+                              Text(
+                                '${challenge.totalQuestions} Questions',
+                                style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.access_time_rounded, size: 12, color: AppColors.textSecondary),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${challenge.duration} Min',
-                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.access_time_rounded, size: 12, color: AppColors.textSecondary),
+                              SizedBox(width: 4),
+                              Text(
+                                '${challenge.duration} Min',
+                                style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
                           const Text(
                             '+4 / -1',
                             style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
@@ -156,7 +167,10 @@ class TodayChallengeCard extends StatelessWidget {
                       const SizedBox(height: 6),
 
                       // Difficulty, Aspirants and Top
-                      Row(
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -165,6 +179,7 @@ class TodayChallengeCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 const Icon(Icons.bar_chart_rounded, size: 11, color: Color(0xFFD97706)),
                                 const SizedBox(width: 3),
@@ -180,24 +195,32 @@ class TodayChallengeCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.people_alt_outlined, size: 11, color: AppColors.textSecondary),
-                          const SizedBox(width: 3),
-                          Text(
-                            '${controller.dailyAspirants.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')} Attempted',
-                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.people_alt_outlined, size: 11, color: AppColors.textSecondary),
+                              const SizedBox(width: 3),
+                              Text(
+                                '${controller.dailyAspirants.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')} Attempted',
+                                style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.emoji_events_outlined, size: 11, color: AppColors.goldDark),
-                          const SizedBox(width: 3),
-                          const Text(
-                            'Top 76/80',
-                            style: TextStyle(
-                              fontFamily: 'PlusJakartaSans',
-                              fontSize: 9.5,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.goldDark,
-                            ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.emoji_events_outlined, size: 11, color: AppColors.goldDark),
+                              SizedBox(width: 3),
+                              Text(
+                                'Top 76/80',
+                                style: TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.goldDark,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -248,8 +271,8 @@ class TodayChallengeCard extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF7C3AED),
-                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.gold,
+                      foregroundColor: AppColors.primaryDark,
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -262,7 +285,7 @@ class TodayChallengeCard extends StatelessWidget {
                           style: const TextStyle(fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w800, fontSize: 12),
                         ),
                         const SizedBox(width: 4),
-                        const Icon(Icons.arrow_forward_rounded, size: 13, color: Colors.white),
+                        const Icon(Icons.arrow_forward_rounded, size: 13, color: AppColors.primaryDark),
                       ],
                     ),
                   ),
@@ -285,7 +308,7 @@ class TodayChallengeCard extends StatelessWidget {
             fontFamily: 'PlusJakartaSans',
             fontSize: 14.5,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C3AED),
+            color: AppColors.goldDark,
           ),
         ),
         const SizedBox(height: 2),
