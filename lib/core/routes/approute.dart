@@ -19,4 +19,5 @@ class AppRoutes {
   static const String studyAnalytics = '/study-analytics';
   static const String consult = '/consult';
   static const String journey = '/journey';
+  static const String upgrade = '/upgrade';
 }
