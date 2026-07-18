@@ -4,7 +4,7 @@ import 'package:upsc_consultant/core/routes/approute.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:upsc_consultant/modules/current_affairs/view/current_affairs_screen.dart';
 
-import 'ai_scanner_card.dart';
+import 'answer_scanner.dart';
 import 'home_stats_row.dart';
 import 'today_challenge_card.dart';
 import 'second_opinion_card.dart';
@@ -56,7 +56,7 @@ class HomeTabView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 1. AI Powered Scan Card
-          AiScannerCard(onNavTap: onNavTap)
+          AnswerScannerBanner(onScanTap: () => onNavTap(2))
               .animate()
               .fade(duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
