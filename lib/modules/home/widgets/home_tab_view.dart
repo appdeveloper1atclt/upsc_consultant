@@ -60,35 +60,35 @@ class HomeTabView extends StatelessWidget {
               .animate()
               .fade(duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // 2. Stats Cards Row
           const HomeStatsRow()
               .animate()
               .fade(delay: 50.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // 3. Today's PT Challenge Card
           const TodayChallengeCard()
               .animate()
               .fade(delay: 100.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // 4. Second Opinion Card
           const SecondOpinionCard()
               .animate()
               .fade(delay: 150.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // 5. Recommended For You Section
           RecommendedForYouSection(onNavTap: onNavTap)
               .animate()
               .fade(delay: 200.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // Quick Access Grid
           QuickActionsGrid(
@@ -115,14 +115,14 @@ class HomeTabView extends StatelessWidget {
           ).animate()
               .fade(delay: 220.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // Study Analytics Section
           StudyAnalyticsSection(onViewAllTap: () => context.push(AppRoutes.studyAnalytics))
               .animate()
               .fade(delay: 240.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // Top Mentors Section
           TopMentorsSection(
@@ -132,21 +132,21 @@ class HomeTabView extends StatelessWidget {
           ).animate()
               .fade(delay: 260.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // 6. Go Premium Banner Card
           const PremiumBanner()
               .animate()
               .fade(delay: 280.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
 
           // Quote Banner
           const QuoteBanner()
               .animate()
               .fade(delay: 300.ms, duration: 400.ms)
               .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
         ],
       ),
     );

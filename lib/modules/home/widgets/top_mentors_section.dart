@@ -41,7 +41,7 @@ class TopMentorsSection extends StatelessWidget {
               onPressed: onViewAllTap,
               child: const Text(
                 'View All',
-                style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold, fontSize: 11),
+                style: TextStyle(color: AppColors.goldDark, fontWeight: FontWeight.bold, fontSize: 11),
               ),
             ),
           ],

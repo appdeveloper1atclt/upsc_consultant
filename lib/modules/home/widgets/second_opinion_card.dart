@@ -11,12 +11,12 @@ class SecondOpinionCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F3FF),
+        gradient: AppColors.primaryGradient,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFDDD6FE), width: 1),
+        border: Border.all(color: AppColors.gold.withValues(alpha: 0.35), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF7C3AED).withValues(alpha: 0.03),
+            color: AppColors.primaryDark.withValues(alpha: 0.15),
             blurRadius: 16,
             offset: const Offset(0, 6),
           )
@@ -24,93 +24,118 @@ class SecondOpinionCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Left chat bubble icon
           Container(
             padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              color: Color(0xFFEDE9FE),
+            decoration: BoxDecoration(
+              color: AppColors.gold.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.chat_bubble_rounded, color: Color(0xFF7C3AED), size: 20),
+            child: const Icon(Icons.chat_bubble_rounded, color: AppColors.goldLight, size: 20),
           ),
           const SizedBox(width: 12),
 
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: const [
                 Text(
                   'Second Opinion ✨',
                   style: TextStyle(
                     fontFamily: 'PlusJakartaSans',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.textPrimary,
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.goldLight,
                   ),
                 ),
-                SizedBox(height: 2),
+                SizedBox(height: 3),
                 Text(
                   'Get personalized guidance from our expert mentors',
                   style: TextStyle(
                     fontFamily: 'PlusJakartaSans',
-                    fontSize: 10,
-                    color: AppColors.textSecondary,
+                    fontSize: 9,
+                    color: Color(0xFFEDE7DA),
                     height: 1.25,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
 
-          // Ask Now outline button
-          OutlinedButton(
-            onPressed: () => context.push(AppRoutes.consult),
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: Color(0xFF7C3AED), width: 1.2),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              minimumSize: const Size(0, 0),
-            ),
-            child: Row(
-              children: const [
-                Text(
-                  'Ask Now',
-                  style: TextStyle(
-                    fontFamily: 'PlusJakartaSans',
-                    fontSize: 10.5,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF7C3AED),
+          // Right side actions
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: AppColors.buttonGradient,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.gold.withValues(alpha: 0.3),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
+                ),
+                child: ElevatedButton(
+                  onPressed: () => context.push(AppRoutes.consult),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    minimumSize: const Size(0, 0),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text(
+                        'Ask Now',
+                        style: TextStyle(
+                          fontFamily: 'PlusJakartaSans',
+                          fontSize: 9,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: 3),
+                      Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 10),
+                    ],
                   ),
                 ),
-                SizedBox(width: 3),
-                Icon(Icons.arrow_forward_rounded, color: Color(0xFF7C3AED), size: 10),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-
-          // Overlapping mentors stack
-          SizedBox(
-            width: 48,
-            height: 28,
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 0,
-                  child: _circleAvatar('https://randomuser.me/api/portraits/women/44.jpg'),
+              ),
+              const SizedBox(height: 6),
+              // Overlapping mentors stack
+              SizedBox(
+                width: 44,
+                height: 20,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      child: _circleAvatar('https://randomuser.me/api/portraits/women/44.jpg'),
+                    ),
+                    Positioned(
+                      left: 10,
+                      child: _circleAvatar('https://randomuser.me/api/portraits/men/32.jpg'),
+                    ),
+                    Positioned(
+                      left: 20,
+                      child: _circleAvatar('https://randomuser.me/api/portraits/men/46.jpg'),
+                    ),
+                  ],
                 ),
-                Positioned(
-                  left: 10,
-                  child: _circleAvatar('https://randomuser.me/api/portraits/men/32.jpg'),
-                ),
-                Positioned(
-                  left: 20,
-                  child: _circleAvatar('https://randomuser.me/api/portraits/men/46.jpg'),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -119,11 +144,11 @@ class SecondOpinionCard extends StatelessWidget {
 
   Widget _circleAvatar(String url) {
     return Container(
-      width: 24,
-      height: 24,
+      width: 20,
+      height: 20,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 1),
+        border: Border.all(color: AppColors.primary, width: 1.2),
       ),
       child: ClipOval(
         child: Image.network(url, fit: BoxFit.cover),

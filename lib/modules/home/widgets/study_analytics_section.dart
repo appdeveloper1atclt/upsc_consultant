@@ -21,12 +21,7 @@ class StudyAnalyticsSection extends StatelessWidget {
                 SizedBox(width: 6),
                 Text(
                   'Study Analytics',
-                  style: TextStyle(
-                    fontFamily: 'PlusJakartaSans',
-                    fontSize: 15,
-                    fontWeight: FontWeight.w900,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.textPrimary),
                 ),
               ],
             ),
@@ -34,11 +29,7 @@ class StudyAnalyticsSection extends StatelessWidget {
               onPressed: onViewAllTap,
               child: const Text(
                 'View All',
-                style: TextStyle(
-                  color: Color(0xFF3B82F6),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: AppColors.goldDark, fontWeight: FontWeight.bold, fontSize: 12),
               ),
             ),
           ],
@@ -59,24 +50,14 @@ class StudyAnalyticsSection extends StatelessWidget {
                     color: AppColors.card,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: AppColors.border.withValues(alpha: 0.6), width: 0.8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.02),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      )
-                    ],
+                    boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.02), blurRadius: 8, offset: const Offset(0, 4))],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
                         'Weekly Study Time',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.textPrimary,
-                        ),
+                        style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
                       ),
                       const Spacer(),
 
@@ -115,21 +96,11 @@ class StudyAnalyticsSection extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: const Color(0xFF0F2537),
                                   borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      blurRadius: 4,
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
+                                  boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
                                 ),
                                 child: const Text(
                                   '8h 45m',
-                                  style: TextStyle(
-                                    fontSize: 8,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                                  style: TextStyle(fontSize: 8, color: Colors.white, fontWeight: FontWeight.w800),
                                 ),
                               ),
                             ),
@@ -148,17 +119,11 @@ class StudyAnalyticsSection extends StatelessWidget {
                 flex: 13,
                 child: Row(
                   children: [
-                    Expanded(
-                      child: _buildStatCard('82%', 'Accuracy', '↑ 8%'),
-                    ),
+                    Expanded(child: _buildStatCard('82%', 'Accuracy', '↑ 8%')),
                     const SizedBox(width: 6),
-                    Expanded(
-                      child: _buildStatCard('486', 'Questions\nSolved', '↑ 32'),
-                    ),
+                    Expanded(child: _buildStatCard('486', 'Questions\nSolved', '↑ 32')),
                     const SizedBox(width: 6),
-                    Expanded(
-                      child: _buildStatCard('128', 'Rank\nThis Week', '↑ 45'),
-                    ),
+                    Expanded(child: _buildStatCard('128', 'Rank\nThis Week', '↑ 45')),
                   ],
                 ),
               ),
@@ -192,11 +157,7 @@ class StudyAnalyticsSection extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           day,
-          style: const TextStyle(
-            fontSize: 7.5,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textSecondary,
-          ),
+          style: const TextStyle(fontSize: 7.5, fontWeight: FontWeight.w700, color: AppColors.textSecondary),
         ),
       ],
     );
@@ -210,13 +171,7 @@ class StudyAnalyticsSection extends StatelessWidget {
         color: AppColors.card,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: AppColors.border.withValues(alpha: 0.6), width: 0.8),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.02),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          )
-        ],
+        boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.02), blurRadius: 8, offset: const Offset(0, 4))],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -224,33 +179,20 @@ class StudyAnalyticsSection extends StatelessWidget {
           // Stat Value
           Text(
             value,
-            style: const TextStyle(
-              fontFamily: 'PlusJakartaSans',
-              fontSize: 15.5,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFF0F2537),
-            ),
+            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 15.5, fontWeight: FontWeight.w900, color: Color(0xFF0F2537)),
           ),
 
           // Stat Label
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 8.2,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textSecondary,
-              height: 1.1,
-            ),
+            style: const TextStyle(fontSize: 8.2, fontWeight: FontWeight.bold, color: AppColors.textSecondary, height: 1.1),
           ),
 
           // Growth Trend Indicator
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
-            decoration: BoxDecoration(
-              color: const Color(0xFFE8F5E9),
-              borderRadius: BorderRadius.circular(5),
-            ),
+            decoration: BoxDecoration(color: const Color(0xFFE8F5E9), borderRadius: BorderRadius.circular(5)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -258,11 +200,7 @@ class StudyAnalyticsSection extends StatelessWidget {
                 const SizedBox(width: 1),
                 Text(
                   trend.replaceAll('↑', '').trim(),
-                  style: const TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF2E7D32),
-                  ),
+                  style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w900, color: Color(0xFF2E7D32)),
                 ),
               ],
             ),

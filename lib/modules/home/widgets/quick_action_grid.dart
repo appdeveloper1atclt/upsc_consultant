@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upsc_consultant/core/constant/app_colors.dart';
 import 'package:upsc_consultant/core/constant/app_image.dart';
 
 class _QuickAction {
@@ -87,7 +88,7 @@ class QuickActionsGrid extends StatelessWidget {
               style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(0, 0), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
               child: const Text(
                 'View All',
-                style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold, fontSize: 11),
+                style: TextStyle(color: AppColors.goldDark, fontWeight: FontWeight.bold, fontSize: 11),
               ),
             ),
           ],
