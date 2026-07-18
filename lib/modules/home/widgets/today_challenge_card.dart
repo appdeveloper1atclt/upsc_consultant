@@ -27,13 +27,7 @@ class TodayChallengeCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: const Color(0xFFF1F5F9), width: 1.2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          )
-        ],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 20, offset: const Offset(0, 8))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,19 +40,10 @@ class TodayChallengeCard extends StatelessWidget {
               children: [
                 Row(
                   children: const [
-                    Text(
-                      '🔥 ',
-                      style: TextStyle(fontSize: 14),
-                    ),
+                    Text('🔥 ', style: TextStyle(fontSize: 14)),
                     Text(
                       'TODAY\'S PT CHALLENGE',
-                      style: TextStyle(
-                        fontFamily: 'PlusJakartaSans',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFFEA580C),
-                        letterSpacing: 0.5,
-                      ),
+                      style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 12, fontWeight: FontWeight.w900, color: Color(0xFFEA580C), letterSpacing: 0.5),
                     ),
                   ],
                 ),
@@ -76,12 +61,7 @@ class TodayChallengeCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         '${controller.currentStreak} Days Streak',
-                        style: const TextStyle(
-                          fontFamily: 'PlusJakartaSans',
-                          fontSize: 9.5,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFFEF4444),
-                        ),
+                        style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, fontWeight: FontWeight.w800, color: Color(0xFFEF4444)),
                       ),
                     ],
                   ),
@@ -121,12 +101,7 @@ class TodayChallengeCard extends StatelessWidget {
                       // Today's Topic Title
                       Text(
                         challenge.topic,
-                        style: const TextStyle(
-                          fontFamily: 'PlusJakartaSans',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: AppColors.textPrimary,
-                        ),
+                        style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.textPrimary),
                       ),
                       const SizedBox(height: 3),
 
@@ -138,7 +113,7 @@ class TodayChallengeCard extends StatelessWidget {
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
+                            children: [
                               Icon(Icons.person_outline_rounded, size: 12, color: AppColors.textSecondary),
                               SizedBox(width: 4),
                               Text(
@@ -149,12 +124,17 @@ class TodayChallengeCard extends StatelessWidget {
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Icon(Icons.access_time_rounded, size: 12, color: AppColors.textSecondary),
-                              SizedBox(width: 4),
+                            children: [
+                              const Icon(Icons.access_time_rounded, size: 12, color: AppColors.textSecondary),
+                              const SizedBox(width: 4),
                               Text(
                                 '${challenge.duration} Min',
-                                style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                                style: const TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 10.5,
+                                  color: AppColors.textSecondary,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ],
                           ),
@@ -174,10 +154,7 @@ class TodayChallengeCard extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFFF7ED),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
+                            decoration: BoxDecoration(color: const Color(0xFFFFF7ED), borderRadius: BorderRadius.circular(6)),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -185,12 +162,7 @@ class TodayChallengeCard extends StatelessWidget {
                                 const SizedBox(width: 3),
                                 Text(
                                   challenge.difficulty,
-                                  style: const TextStyle(
-                                    fontFamily: 'PlusJakartaSans',
-                                    fontSize: 9.5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFD97706),
-                                  ),
+                                  style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, fontWeight: FontWeight.bold, color: Color(0xFFD97706)),
                                 ),
                               ],
                             ),
@@ -202,7 +174,12 @@ class TodayChallengeCard extends StatelessWidget {
                               const SizedBox(width: 3),
                               Text(
                                 '${controller.dailyAspirants.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')} Attempted',
-                                style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                                style: const TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 9.5,
+                                  color: AppColors.textSecondary,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ],
                           ),
@@ -213,12 +190,7 @@ class TodayChallengeCard extends StatelessWidget {
                               SizedBox(width: 3),
                               Text(
                                 'Top 76/80',
-                                style: TextStyle(
-                                  fontFamily: 'PlusJakartaSans',
-                                  fontSize: 9.5,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.goldDark,
-                                ),
+                                style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, fontWeight: FontWeight.bold, color: AppColors.goldDark),
                               ),
                             ],
                           ),
@@ -232,14 +204,14 @@ class TodayChallengeCard extends StatelessWidget {
 
                 // Right side graphic - Trophy
                 Image.asset(
-                  AppImage.trophyImg,
-                  width: 56,
-                  height: 56,
-                  fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 48, color: AppColors.gold),
-                )
-                  .animate(onPlay: (controller) => controller.repeat(reverse: true))
-                  .slideY(begin: 0, end: -0.06, duration: 1500.ms, curve: Curves.easeInOutQuad),
+                      AppImage.trophyImg,
+                      width: 56,
+                      height: 56,
+                      fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 48, color: AppColors.gold),
+                    )
+                    .animate(onPlay: (controller) => controller.repeat(reverse: true))
+                    .slideY(begin: 0, end: -0.06, duration: 1500.ms, curve: Curves.easeInOutQuad),
               ],
             ),
           ),
@@ -304,22 +276,12 @@ class TodayChallengeCard extends StatelessWidget {
       children: [
         Text(
           value,
-          style: const TextStyle(
-            fontFamily: 'PlusJakartaSans',
-            fontSize: 14.5,
-            fontWeight: FontWeight.w900,
-            color: AppColors.goldDark,
-          ),
+          style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 14.5, fontWeight: FontWeight.w900, color: AppColors.goldDark),
         ),
         const SizedBox(height: 2),
         Text(
           label,
-          style: const TextStyle(
-            fontFamily: 'PlusJakartaSans',
-            fontSize: 9.5,
-            color: AppColors.textSecondary,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
         ),
       ],
     );
