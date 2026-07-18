@@ -150,7 +150,7 @@ class _ActionCardState extends State<_ActionCard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(widget.action.icon, width: 65, height: 65, fit: BoxFit.cover),
+              Image.asset(widget.action.icon, width: 50, height: 50, fit: BoxFit.cover),
               const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),

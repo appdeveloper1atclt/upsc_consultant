@@ -162,13 +162,15 @@ class AnswerScannerBanner extends StatelessWidget {
                           children: const [
                             Icon(Icons.verified_user_outlined, size: 11, color: AppColors.textSecondary),
                             SizedBox(width: 4),
-                            Text(
-                              'Supports PDF only • Secure & Private',
-                              style: TextStyle(
-                                fontFamily: 'PlusJakartaSans',
-                                fontSize: 9,
-                                color: AppColors.textSecondary,
-                                fontWeight: FontWeight.w600,
+                            Expanded(
+                              child: Text(
+                                'Supports PDF only • Secure & Private',
+                                style: TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 9,
+                                  color: AppColors.textSecondary,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ],

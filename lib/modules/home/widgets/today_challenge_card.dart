@@ -226,14 +226,22 @@ class TodayChallengeCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: const Color(0xFFF1F5F9), width: 1),
               ),
-              child: Row(
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 12,
+                runSpacing: 8,
                 children: [
-                  _inlineStat('Score', '${challenge.lastScore ?? 15}/80'),
-                  const SizedBox(width: 16),
-                  _inlineStat('Accuracy', '${(challenge.lastAccuracy ?? 35).toStringAsFixed(0)}%'),
-                  const SizedBox(width: 16),
-                  _inlineStat('Time Taken', challenge.lastTimeTaken ?? '2m 20s'),
-                  const Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _inlineStat('Score', '${challenge.lastScore ?? 15}/80'),
+                      const SizedBox(width: 16),
+                      _inlineStat('Accuracy', '${(challenge.lastAccuracy ?? 35).toStringAsFixed(0)}%'),
+                      const SizedBox(width: 16),
+                      _inlineStat('Time Taken', challenge.lastTimeTaken ?? '2m 20s'),
+                    ],
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       if (isAttempted) {
@@ -251,6 +259,7 @@ class TodayChallengeCard extends StatelessWidget {
                       minimumSize: const Size(0, 0),
                     ),
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           isAttempted ? 'View Result' : 'Start Challenge',

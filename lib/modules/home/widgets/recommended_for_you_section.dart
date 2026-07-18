@@ -16,12 +16,7 @@ class RecommendedForYouSection extends StatelessWidget {
           children: [
             const Text(
               'Recommended For You',
-              style: TextStyle(
-                fontFamily: 'PlusJakartaSans',
-                fontSize: 15.5,
-                fontWeight: FontWeight.w900,
-                color: AppColors.textPrimary,
-              ),
+              style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 15.5, fontWeight: FontWeight.w900, color: AppColors.textPrimary),
             ),
             GestureDetector(
               onTap: () => onNavTap(3),
@@ -29,12 +24,7 @@ class RecommendedForYouSection extends StatelessWidget {
                 children: const [
                   Text(
                     'View All',
-                    style: TextStyle(
-                      fontFamily: 'PlusJakartaSans',
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF7C3AED),
-                    ),
+                    style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 11.5, fontWeight: FontWeight.bold, color: Color(0xFF3B82F6)),
                   ),
                   SizedBox(width: 2),
                   Icon(Icons.arrow_forward_rounded, color: Color(0xFF7C3AED), size: 12),
@@ -129,13 +119,7 @@ class RecommendedForYouSection extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFF1F5F9), width: 1.2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
-            blurRadius: 12,
-            offset: const Offset(0, 6),
-          )
-        ],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 12, offset: const Offset(0, 6))],
       ),
       padding: const EdgeInsets.all(14),
       child: Column(
@@ -144,19 +128,10 @@ class RecommendedForYouSection extends StatelessWidget {
           // Category tag
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3.5),
-            decoration: BoxDecoration(
-              color: categoryBg,
-              borderRadius: BorderRadius.circular(6),
-            ),
+            decoration: BoxDecoration(color: categoryBg, borderRadius: BorderRadius.circular(6)),
             child: Text(
               category,
-              style: TextStyle(
-                fontFamily: 'PlusJakartaSans',
-                fontSize: 8.5,
-                fontWeight: FontWeight.w900,
-                color: categoryColor,
-                letterSpacing: 0.2,
-              ),
+              style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 8.5, fontWeight: FontWeight.w900, color: categoryColor, letterSpacing: 0.2),
             ),
           ),
           const SizedBox(height: 12),
@@ -164,24 +139,14 @@ class RecommendedForYouSection extends StatelessWidget {
           // Title
           Text(
             title,
-            style: const TextStyle(
-              fontFamily: 'PlusJakartaSans',
-              fontSize: 13.5,
-              fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
-            ),
+            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
           ),
           const SizedBox(height: 2),
 
           // Subtitle
           Text(
             subtitle,
-            style: const TextStyle(
-              fontFamily: 'PlusJakartaSans',
-              fontSize: 10,
-              color: AppColors.textSecondary,
-              fontWeight: FontWeight.w500,
-            ),
+            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 18),
 
@@ -198,12 +163,7 @@ class RecommendedForYouSection extends StatelessWidget {
                       child: Text(
                         indicatorText,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'PlusJakartaSans',
-                          fontSize: 9.5,
-                          fontWeight: FontWeight.bold,
-                          color: indicatorColor,
-                        ),
+                        style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, fontWeight: FontWeight.bold, color: indicatorColor),
                       ),
                     ),
                   ],
@@ -215,13 +175,8 @@ class RecommendedForYouSection extends StatelessWidget {
                 child: Container(
                   width: 26,
                   height: 26,
-                  decoration: BoxDecoration(
-                    color: buttonColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Center(
-                    child: Icon(Icons.arrow_forward_rounded, size: 12, color: Colors.white),
-                  ),
+                  decoration: BoxDecoration(color: buttonColor, shape: BoxShape.circle),
+                  child: const Center(child: Icon(Icons.arrow_forward_rounded, size: 12, color: Colors.white)),
                 ),
               ),
             ],
@@ -235,10 +190,7 @@ class RecommendedForYouSection extends StatelessWidget {
     return Container(
       width: active ? 10 : 6,
       height: 6,
-      decoration: BoxDecoration(
-        color: active ? const Color(0xFF7C3AED) : const Color(0xFFE2E8F0),
-        borderRadius: BorderRadius.circular(3),
-      ),
+      decoration: BoxDecoration(color: active ? const Color(0xFF7C3AED) : const Color(0xFFE2E8F0), borderRadius: BorderRadius.circular(3)),
     );
   }
 }
