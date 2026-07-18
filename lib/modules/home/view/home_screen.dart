@@ -43,10 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(
-        currentIndex: currentIndex,
-        onTap: _handleNavTap,
-      ),
+      bottomNavigationBar: BottomNavigationBarWidget(currentIndex: currentIndex, onTap: _handleNavTap),
     );
   }
 }
