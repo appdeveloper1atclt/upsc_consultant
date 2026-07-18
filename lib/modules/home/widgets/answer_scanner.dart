@@ -22,52 +22,53 @@ class AnswerScannerBanner extends StatelessWidget {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xFFFDFDFD),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFEDF2F7), width: 1.2),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFF1F5F9), width: 1.2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.02),
-            blurRadius: 12,
-            offset: const Offset(0, 6),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           )
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         child: Stack(
           children: [
-            // Abstract background graphic on the right
+            // Premium subtle background gold glow on the right
             Positioned(
-              right: -15,
-              top: -15,
+              right: -20,
+              top: -20,
               child: Container(
-                width: 140,
-                height: 140,
+                width: 120,
+                height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFFEEF2F6).withValues(alpha: 0.5),
+                  color: AppColors.gold.withValues(alpha: 0.05),
                 ),
               ),
             ),
 
             // Content padding
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               child: Row(
                 children: [
                   Expanded(
-                    flex: 62,
+                    flex: 68,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // AI Powered Badge
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                           decoration: BoxDecoration(
                             color: const Color(0xFFFFFBEB),
                             borderRadius: BorderRadius.circular(6),
@@ -76,8 +77,8 @@ class AnswerScannerBanner extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: const [
-                              Icon(Icons.bolt_rounded, color: Color(0xFFB45309), size: 11),
-                              SizedBox(width: 3),
+                              Icon(Icons.bolt_rounded, color: Color(0xFFB45309), size: 10),
+                              SizedBox(width: 2),
                               Text(
                                 'AI POWERED',
                                 style: TextStyle(
@@ -91,17 +92,17 @@ class AnswerScannerBanner extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 8),
 
                         // Title
                         RichText(
                           text: const TextSpan(
                             style: TextStyle(
                               fontFamily: 'PlusJakartaSans',
-                              fontSize: 16,
+                              fontSize: 15,
                               fontWeight: FontWeight.w900,
                               color: AppColors.textPrimary,
-                              height: 1.25,
+                              height: 1.2,
                             ),
                             children: [
                               TextSpan(text: "Scan Your Answer Sheet\n& Get "),
@@ -112,170 +113,152 @@ class AnswerScannerBanner extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 14),
+                        const SizedBox(height: 12),
 
-                        // Scan Button
-                        GestureDetector(
-                          onTap: () => _showUploadSheet(context),
-                          child: Container(
-                            height: 40,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [AppColors.gold, AppColors.goldLight],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.gold.withValues(alpha: 0.2),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 3),
-                                )
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(Icons.document_scanner_rounded, color: AppColors.primaryDark, size: 14),
-                                SizedBox(width: 6),
-                                Text(
-                                  'Scan / Upload PDF',
-                                  style: TextStyle(
-                                    fontFamily: 'PlusJakartaSans',
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 11.5,
-                                    color: AppColors.primaryDark,
-                                  ),
+                        // Scan Button (Fitted to scale down dynamically on narrow screens)
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: GestureDetector(
+                            onTap: () => _showUploadSheet(context),
+                            child: Container(
+                              height: 36,
+                              padding: const EdgeInsets.symmetric(horizontal: 14),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [AppColors.gold, AppColors.goldLight],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
                                 ),
-                                SizedBox(width: 6),
-                                Icon(Icons.arrow_forward_rounded, color: AppColors.primaryDark, size: 12),
-                              ],
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.gold.withValues(alpha: 0.15),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 2),
+                                  )
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(Icons.document_scanner_rounded, color: AppColors.primaryDark, size: 13),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    'Scan / Upload PDF',
+                                    style: TextStyle(
+                                      fontFamily: 'PlusJakartaSans',
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 11,
+                                      color: AppColors.primaryDark,
+                                    ),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Icon(Icons.arrow_forward_rounded, color: AppColors.primaryDark, size: 11),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 8),
 
-                        // Footer text
-                        Row(
-                          children: const [
-                            Icon(Icons.verified_user_outlined, size: 11, color: AppColors.textSecondary),
-                            SizedBox(width: 4),
-                            Expanded(
-                              child: Text(
-                                'Supports PDF only • Secure & Private',
+                        // Footer text (Uses inline RichText to prevent Row horizontal overflow)
+                        const Text.rich(
+                          TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 4.0),
+                                  child: Icon(Icons.verified_user_outlined, size: 11, color: AppColors.textSecondary),
+                                ),
+                                alignment: PlaceholderAlignment.middle,
+                              ),
+                              TextSpan(
+                                text: 'Supports PDF only • Secure & Private',
                                 style: TextStyle(
                                   fontFamily: 'PlusJakartaSans',
-                                  fontSize: 9,
+                                  fontSize: 8.5,
                                   color: AppColors.textSecondary,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
 
-                  // Right visual decoration - simulated answer sheet paper & magnifier
+                  // Right visual decoration - modern pulsing gold badge
                   Expanded(
-                    flex: 38,
+                    flex: 32,
                     child: SizedBox(
-                      height: 130,
+                      height: 80,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          // Leaf background shape
-                          Positioned(
-                            right: -10,
-                            bottom: 5,
-                            child: Icon(
-                              Icons.spa_rounded,
-                              size: 54,
-                              color: const Color(0xFFA7F3D0).withValues(alpha: 0.35),
+                          // Outer glowing ring
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.gold.withValues(alpha: 0.08),
                             ),
                           ),
-
-                          // The Answer Sheet Container
+                          // Gold glassmorphism scanner container
+                          Container(
+                            width: 46,
+                            height: 46,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white,
+                                  AppColors.goldLight.withValues(alpha: 0.9),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              border: Border.all(
+                                color: AppColors.gold.withValues(alpha: 0.35),
+                                width: 1.2,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.gold.withValues(alpha: 0.08),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 3),
+                                )
+                              ],
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.document_scanner_rounded,
+                                color: AppColors.goldDark,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                          // Neon gold scanning line
                           Positioned(
-                            top: 10,
-                            right: 0,
+                            top: 20,
                             child: Container(
-                              width: 80,
-                              height: 110,
+                              width: 50,
+                              height: 1.5,
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: const Color(0xFFE2E8F0), width: 1.2),
+                                color: AppColors.gold,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.04),
-                                    blurRadius: 8,
-                                    offset: const Offset(3, 3),
+                                    color: AppColors.gold,
+                                    blurRadius: 3,
+                                    spreadRadius: 0.5,
                                   )
                                 ],
                               ),
-                              padding: const EdgeInsets.all(6),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Center(
-                                    child: Text(
-                                      'ANSWER SHEET',
-                                      style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 5.5, fontWeight: FontWeight.w900, color: AppColors.textSecondary),
-                                    ),
-                                  ),
-                                  const Divider(height: 6, thickness: 0.5),
-                                  _mockAnswerRow('1', true),
-                                  _mockAnswerRow('2', false),
-                                  _mockAnswerRow('3', true),
-                                  _mockAnswerRow('4', false),
-                                  _mockAnswerRow('5', true),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          // The Magnifier glass decoration
-                          Positioned(
-                            top: 35,
-                            left: 0,
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white.withValues(alpha: 0.9),
-                                border: Border.all(color: const Color(0xFF94A3B8), width: 3),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.08),
-                                    blurRadius: 6,
-                                    offset: const Offset(2, 3),
-                                  )
-                                ],
-                              ),
-                              child: const Center(
-                                child: Icon(Icons.search_rounded, color: AppColors.gold, size: 18),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 68,
-                            left: 28,
-                            child: Transform.rotate(
-                              angle: 0.78, // 45 degrees
-                              child: Container(
-                                width: 6,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF64748B),
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                              ),
-                            ),
+                            )
+                            .animate(onPlay: (c) => c.repeat(reverse: true))
+                            .y(begin: -12, end: 12, duration: 1500.ms, curve: Curves.easeInOut),
                           ),
                         ],
                       ),
@@ -286,35 +269,6 @@ class AnswerScannerBanner extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _mockAnswerRow(String num, bool active) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3.0),
-      child: Row(
-        children: [
-          Text('$num.', style: const TextStyle(fontSize: 6, fontWeight: FontWeight.bold, color: Colors.grey)),
-          const SizedBox(width: 4),
-          _mockCircle(active),
-          const SizedBox(width: 2),
-          _mockCircle(!active),
-          const SizedBox(width: 2),
-          _mockCircle(false),
-        ],
-      ),
-    );
-  }
-
-  Widget _mockCircle(bool filled) {
-    return Container(
-      width: 6,
-      height: 6,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: filled ? const Color(0xFF7C3AED) : Colors.transparent,
-        border: Border.all(color: filled ? const Color(0xFF7C3AED) : const Color(0xFFCBD5E1), width: 0.5),
       ),
     );
   }
