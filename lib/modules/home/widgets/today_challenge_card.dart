@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/app_image.dart';
-import '../../../../core/constant/app_text_styles.dart';
 import '../../../../core/routes/approute.dart';
 import '../../daily_challenge/provider/pt_challenge_controller.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -24,23 +23,15 @@ class TodayChallengeCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.zero,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF0F2537),
-            Color(0xFF081521),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.gold.withValues(alpha: 0.35), width: 1.2),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFF1F5F9), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: AppColors.gold.withValues(alpha: 0.08),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
           )
         ],
       ),
@@ -49,42 +40,47 @@ class TodayChallengeCard extends StatelessWidget {
         children: [
           // Header Row (Title & Streak)
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: const Text(
-                    '🔥 Today\'s PT Challenge',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontFamily: 'PlusJakartaSans',
-                      fontSize: 13.5,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.goldLight,
+                Row(
+                  children: const [
+                    Text(
+                      '🔥 ',
+                      style: TextStyle(fontSize: 14),
                     ),
-                  ),
+                    Text(
+                      'TODAY\'S PT CHALLENGE',
+                      style: TextStyle(
+                        fontFamily: 'PlusJakartaSans',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFFEA580C),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.08),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.orange.withValues(alpha: 0.3), width: 0.8),
+                    color: const Color(0xFFFEF2F2),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFFEE2E2), width: 0.8),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.local_fire_department_rounded, color: Colors.orange, size: 12),
-                      const SizedBox(width: 2.5),
+                      const Icon(Icons.local_fire_department_rounded, color: Color(0xFFEF4444), size: 13),
+                      const SizedBox(width: 4),
                       Text(
                         '${controller.currentStreak} Days Streak',
                         style: const TextStyle(
-                          fontSize: 9,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orangeAccent,
+                          fontFamily: 'PlusJakartaSans',
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFFEF4444),
                         ),
                       ),
                     ],
@@ -94,14 +90,30 @@ class TodayChallengeCard extends StatelessWidget {
             ),
           ),
 
-          const Divider(height: 1, color: Colors.white10),
-
           // Main Card Content
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // Circular Parliament Image
+                Container(
+                  width: 58,
+                  height: 58,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: const Color(0xFFE2E8F0), width: 1.5),
+                  ),
+                  child: ClipOval(
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1600664901892-7fd1404c680e?w=150',
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const Icon(Icons.account_balance_rounded, color: AppColors.primary, size: 28),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 14),
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,57 +121,85 @@ class TodayChallengeCard extends StatelessWidget {
                       // Today's Topic Title
                       Text(
                         challenge.topic,
-                        style: AppTextStyles.textPrimary18bold.copyWith(
-                          fontSize: 15,
+                        style: const TextStyle(
+                          fontFamily: 'PlusJakartaSans',
+                          fontSize: 16,
                           fontWeight: FontWeight.w900,
-                          height: 1.15,
-                          color: Colors.white,
+                          color: AppColors.textPrimary,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 3),
 
                       // Questions count & Time specs
-                      Text(
-                        '${challenge.totalQuestions} Questions • ${challenge.duration} Min • +4 / -1',
-                        style: AppTextStyles.textSecondary12medium.copyWith(fontSize: 11, color: Colors.white.withValues(alpha: 0.65)),
+                      Row(
+                        children: [
+                          const Icon(Icons.person_outline_rounded, size: 12, color: AppColors.textSecondary),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${challenge.totalQuestions} Questions',
+                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.access_time_rounded, size: 12, color: AppColors.textSecondary),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${challenge.duration} Min',
+                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '+4 / -1',
+                            style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 10.5, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 6),
 
-                      const SizedBox(height: 8),
-                      // Combined single line specs
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            const Icon(Icons.bar_chart_rounded, size: 11, color: Colors.white70),
-                            const SizedBox(width: 3),
-                            Text(
-                              challenge.difficulty,
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: _getDifficultyColor(challenge.difficulty),
-                              ),
+                      // Difficulty, Aspirants and Top
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFF7ED),
+                              borderRadius: BorderRadius.circular(6),
                             ),
-                            const SizedBox(width: 8),
-                            const Icon(Icons.people_alt_outlined, size: 11, color: Colors.white70),
-                            const SizedBox(width: 3),
-                            Text(
-                              '${controller.dailyAspirants} Aspirants',
-                              style: const TextStyle(fontSize: 10, color: Colors.white70),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.bar_chart_rounded, size: 11, color: Color(0xFFD97706)),
+                                const SizedBox(width: 3),
+                                Text(
+                                  challenge.difficulty,
+                                  style: const TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    fontSize: 9.5,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFD97706),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 8),
-                            const Icon(Icons.emoji_events_outlined, size: 11, color: AppColors.goldLight),
-                            const SizedBox(width: 3),
-                            const Text(
-                              'Top: 76/80',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.goldLight,
-                              ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.people_alt_outlined, size: 11, color: AppColors.textSecondary),
+                          const SizedBox(width: 3),
+                          Text(
+                            '${controller.dailyAspirants.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')} Attempted',
+                            style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.emoji_events_outlined, size: 11, color: AppColors.goldDark),
+                          const SizedBox(width: 3),
+                          const Text(
+                            'Top 76/80',
+                            style: TextStyle(
+                              fontFamily: 'PlusJakartaSans',
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.goldDark,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -168,109 +208,66 @@ class TodayChallengeCard extends StatelessWidget {
                 const SizedBox(width: 12),
 
                 // Right side graphic - Trophy
-                Column(
-                  children: [
-                    Image.asset(
-                      AppImage.trophyImg,
-                      width: 52,
-                      height: 52,
-                      fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 45, color: AppColors.gold),
-                    )
-                      .animate(onPlay: (controller) => controller.repeat(reverse: true))
-                      .slideY(begin: 0, end: -0.08, duration: 1500.ms, curve: Curves.easeInOutQuad),
-                  ],
-                ),
+                Image.asset(
+                  AppImage.trophyImg,
+                  width: 56,
+                  height: 56,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => const Icon(Icons.emoji_events_rounded, size: 48, color: AppColors.gold),
+                )
+                  .animate(onPlay: (controller) => controller.repeat(reverse: true))
+                  .slideY(begin: 0, end: -0.06, duration: 1500.ms, curve: Curves.easeInOutQuad),
               ],
             ),
           ),
 
-          // If attempt is completed: show scorecard inline
-          if (isAttempted) ...[
-            const Divider(height: 1, color: Colors.white10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.04),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 0.5),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _inlineStat('Score', '${challenge.lastScore ?? 0}/80', isGold: true),
-                    _inlineStat('Accuracy', '${(challenge.lastAccuracy ?? 0).toStringAsFixed(0)}%', isGold: true),
-                    _inlineStat('Time', challenge.lastTimeTaken ?? '0m', isGold: true),
-                  ],
-                ),
-              ),
-            ),
-          ],
-
-          const Divider(height: 1, color: Colors.white10),
-
-          // Button Row
+          // Bottom Stats Row (Scorecard inline)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: isAttempted
-                  ? Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context.push(AppRoutes.dailyPtResult);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(double.infinity, 40),
-                              backgroundColor: AppColors.gold,
-                              foregroundColor: AppColors.primaryDark,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
-                            child: const Text('View Result', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: () {
-                              context.push(AppRoutes.dailyPtPreview);
-                            },
-                            style: OutlinedButton.styleFrom(
-                              minimumSize: const Size(double.infinity, 40),
-                              side: const BorderSide(color: AppColors.goldLight, width: 1.2),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
-                            child: const Text('Review Answers', style: TextStyle(color: AppColors.goldLight, fontWeight: FontWeight.bold, fontSize: 13)),
-                          ),
-                        ),
-                      ],
-                    )
-                  : ElevatedButton(
-                      onPressed: () {
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF8FAFC),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFFF1F5F9), width: 1),
+              ),
+              child: Row(
+                children: [
+                  _inlineStat('Score', '${challenge.lastScore ?? 15}/80'),
+                  const SizedBox(width: 16),
+                  _inlineStat('Accuracy', '${(challenge.lastAccuracy ?? 35).toStringAsFixed(0)}%'),
+                  const SizedBox(width: 16),
+                  _inlineStat('Time Taken', challenge.lastTimeTaken ?? '2m 20s'),
+                  const Spacer(),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (isAttempted) {
+                        context.push(AppRoutes.dailyPtResult);
+                      } else {
                         context.push(AppRoutes.dailyPtSelect);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 40),
-                        backgroundColor: AppColors.gold,
-                        foregroundColor: AppColors.primaryDark,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text('Start Challenge', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 13)),
-                          SizedBox(width: 4),
-                          Icon(Icons.arrow_forward_rounded, size: 15),
-                        ],
-                      ),
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF7C3AED),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      minimumSize: const Size(0, 0),
                     ),
+                    child: Row(
+                      children: [
+                        Text(
+                          isAttempted ? 'View Result' : 'Start Challenge',
+                          style: const TextStyle(fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w800, fontSize: 12),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.arrow_forward_rounded, size: 13, color: Colors.white),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -278,38 +275,27 @@ class TodayChallengeCard extends StatelessWidget {
     );
   }
 
-  Color _getDifficultyColor(String diff) {
-    switch (diff) {
-      case 'Easy':
-        return Colors.greenAccent;
-      case 'Medium':
-        return Colors.orangeAccent;
-      case 'Hard':
-        return Colors.redAccent;
-      default:
-        return AppColors.goldLight;
-    }
-  }
-
-  Widget _inlineStat(String label, String value, {bool isGold = false}) {
+  Widget _inlineStat(String label, String value) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'PlusJakartaSans',
-            fontSize: 14,
-            fontWeight: FontWeight.w800,
-            color: isGold ? AppColors.goldLight : AppColors.textPrimary,
+            fontSize: 14.5,
+            fontWeight: FontWeight.w900,
+            color: Color(0xFF7C3AED),
           ),
         ),
-        const SizedBox(height: 1),
+        const SizedBox(height: 2),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
+            fontFamily: 'PlusJakartaSans',
             fontSize: 9.5,
-            color: isGold ? Colors.white60 : AppColors.textSecondary,
-            fontWeight: FontWeight.w500,
+            color: AppColors.textSecondary,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],
