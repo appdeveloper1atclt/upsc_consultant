@@ -1,6 +1,13 @@
 class AppImage {
   AppImage._();
   //
+
+  static const String bottomNavHome = "assets/images/home.png";
+  static const String bottomNavMentoring = "assets/images/mentoring.png";
+  static const String bottomNavScan = "assets/images/scan.png";
+  static const String bottomNavTest = "assets/images/test.png";
+  static const String bottomNavProfile = "assets/images/user.png";
+
   static const String appLogo = "assets/images/logo.png";
   static const String ashokimg = "assets/images/ashok.jpg";
   static const String stambhimg = "assets/images/stambh.jpg";
@@ -23,4 +30,5 @@ class AppImage {
   static const String onboardAnimationImg4 = "assets/images/mentor1.png";
   static const String googleImg = "assets/images/google.png";
   static const String stumbhImg = "assets/images/stumbh.png";
+  static const String calenderImg = "assets/images/calender.png";
 }

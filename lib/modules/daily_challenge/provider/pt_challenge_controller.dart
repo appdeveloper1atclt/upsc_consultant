@@ -4,6 +4,16 @@ import '../models/daily_challenge.dart';
 import '../models/pt_question.dart';
 import '../repository/pt_challenge_repository.dart';
 
+class ConsultationSession {
+  final String id;
+  final String mentorName;
+  final String topic;
+  final String dateTime;
+  final bool isCompleted;
+
+  ConsultationSession({required this.id, required this.mentorName, required this.topic, required this.dateTime, this.isCompleted = false});
+}
+
 class PtChallengeController extends ChangeNotifier {
   final PtChallengeRepository _repository = PtChallengeRepository();
 
@@ -18,6 +28,38 @@ class PtChallengeController extends ChangeNotifier {
   int currentStreak = 18;
   int dailyAspirants = 2438;
 
+  // Journey state details
+  String userName = 'Abhishek Jha';
+  String targetExam = 'UPSC CSE';
+  String targetAttempt = '2027';
+  double studyHours = 6.0;
+
+  List<ConsultationSession> consultations = [
+    ConsultationSession(id: '1', mentorName: 'Dr. Tanvi Sharma', topic: 'Syllabus & Optional Prep Strategy', dateTime: 'Tomorrow, 5:00 PM', isCompleted: false),
+    ConsultationSession(
+      id: '2',
+      mentorName: 'Sanjay Kumar (IAS Retd.)',
+      topic: 'Ethics GS-4 Mock Evaluation',
+      dateTime: '12th July, 3:00 PM',
+      isCompleted: true,
+    ),
+    ConsultationSession(
+      id: '3',
+      mentorName: 'Aarti Dogra (IAS)',
+      topic: 'Syllabus Micro-timelining Session',
+      dateTime: '05th July, 11:00 AM',
+      isCompleted: true,
+    ),
+  ];
+
+  void updateJourney({required String name, required String exam, required String attempt, required double hours}) {
+    userName = name;
+    targetExam = exam;
+    targetAttempt = attempt;
+    studyHours = hours;
+    notifyListeners();
+  }
+
   // Session Results
   int score = 0;
   int rank = 243;
@@ -29,19 +71,9 @@ class PtChallengeController extends ChangeNotifier {
   String avgTimePerQuestionString = "0s";
 
   // Topic wise performance (mock)
-  final Map<String, double> topicScores = {
-    'Polity': 0.80,
-    'Economy': 0.45,
-    'History': 1.00,
-    'Geography': 0.60,
-  };
+  final Map<String, double> topicScores = {'Polity': 0.80, 'Economy': 0.45, 'History': 1.00, 'Geography': 0.60};
   final List<String> weakTopics = ['Economy', 'Geography'];
-  final List<String> aiRecommendations = [
-    'Parliament',
-    'Fundamental Rights (FR)',
-    'Directive Principles (DPSP)',
-    'Union Budget & Fiscal Policy'
-  ];
+  final List<String> aiRecommendations = ['Parliament', 'Fundamental Rights (FR)', 'Directive Principles (DPSP)', 'Union Budget & Fiscal Policy'];
 
   // Getters
   DailyChallenge? get currentChallenge => _currentChallenge;
@@ -49,8 +81,7 @@ class PtChallengeController extends ChangeNotifier {
   int get currentQuestionIndex => _currentQuestionIndex;
   int get remainingTime => _remainingTime;
   bool get isSubmitting => _isSubmitting;
-  PtQuestion? get currentQuestion =>
-      _questions.isNotEmpty ? _questions[_currentQuestionIndex] : null;
+  PtQuestion? get currentQuestion => _questions.isNotEmpty ? _questions[_currentQuestionIndex] : null;
 
   // Get challenges from repository
   List<DailyChallenge> getChallenges() => _repository.getChallenges();
@@ -105,10 +136,10 @@ class PtChallengeController extends ChangeNotifier {
         if (_questions.isNotEmpty) {
           _questions[_currentQuestionIndex].timeSpent++;
         }
-        
+
         // Notify listeners every second so timer ticks in UI
         notifyListeners();
-        
+
         // Check for auto-submit
         if (_remainingTime == 0) {
           autoSubmit();
@@ -159,8 +190,7 @@ class PtChallengeController extends ChangeNotifier {
 
   void toggleMarkForReview() {
     if (_questions.isNotEmpty) {
-      _questions[_currentQuestionIndex].isMarkedReview =
-          !_questions[_currentQuestionIndex].isMarkedReview;
+      _questions[_currentQuestionIndex].isMarkedReview = !_questions[_currentQuestionIndex].isMarkedReview;
       notifyListeners();
     }
   }
@@ -196,7 +226,7 @@ class PtChallengeController extends ChangeNotifier {
 
     // UPSC marking: +4 for correct, -1 for incorrect, 0 for skipped
     score = (correctCount * 4) - (wrongCount * 1);
-    
+
     // Percentages & details
     int attempted = correctCount + wrongCount;
     accuracy = attempted > 0 ? (correctCount / attempted) * 100 : 0.0;
@@ -240,7 +270,7 @@ class PtChallengeController extends ChangeNotifier {
     challenge.lastScore = null;
     challenge.lastAccuracy = null;
     challenge.lastTimeTaken = null;
-    
+
     startChallenge(challenge);
   }
 

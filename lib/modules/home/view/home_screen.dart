@@ -28,16 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.scaffold,
       body: Column(
         children: [
-          const CustomAppBar(),
+          if (currentIndex == 0) const CustomAppBar(),
           Expanded(
             child: IndexedStack(
               index: currentIndex,
               children: [
                 HomeTabView(onNavTap: _handleNavTap),
-                const MentorsScreen(),
-                const ScanTabView(),
+                SafeArea(bottom: false, child: const MentorsScreen()),
+                SafeArea(bottom: false, child: const ScanTabView()),
                 const TestsScreen(),
-                ProfileScreen(onTabChanged: _handleNavTap),
+                SafeArea(bottom: false, child: ProfileScreen(onTabChanged: _handleNavTap)),
               ],
             ),
           ),

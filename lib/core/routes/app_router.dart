@@ -11,6 +11,7 @@ import '../../modules/mentors/view/mentor_detail_screen.dart';
 import '../../modules/mentors/view/payment_screen.dart';
 import '../../modules/home/view/analysis_screen.dart';
 import '../../modules/daily_challenge/models/daily_challenge.dart';
+import '../../modules/daily_challenge/views/pt_dashboard_screen.dart';
 import '../../modules/daily_challenge/views/pt_topic_select_screen.dart';
 import '../../modules/daily_challenge/views/pt_instructions_screen.dart';
 import '../../modules/daily_challenge/views/pt_quiz_screen.dart';
@@ -91,8 +92,8 @@ final GoRouter appRouter = GoRouter(
       },
     ),
 
-    // ── Daily PT Challenge Select ──────────────────────────────────────────
-    GoRoute(path: AppRoutes.dailyPtSelect, name: 'daily-pt-select', pageBuilder: (context, state) => _slideIn(const PtTopicSelectScreen())),
+    // ── Daily PT Challenge Dashboard / Select ────────────────────────────────
+    GoRoute(path: AppRoutes.dailyPtSelect, name: 'daily-pt-select', pageBuilder: (context, state) => _slideIn(const PtDashboardScreen())),
 
     // ── Daily PT Challenge Instructions ─────────────────────────────────────
     GoRoute(

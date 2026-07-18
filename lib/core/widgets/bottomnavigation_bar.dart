@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:upsc_consultant/core/constant/app_image.dart';
 import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -21,17 +22,17 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _item(Icons.home_rounded, 'Home', 0),
-          _item(Icons.supervised_user_circle_rounded, 'Mentors', 1),
+          _item(AppImage.bottomNavHome, 'Home', 0),
+          _item(AppImage.bottomNavMentoring, 'Mentors', 1),
           _scanItem(2),
-          _item(Icons.assignment_outlined, 'Tests', 3),
-          _item(Icons.person_outline_rounded, 'Profile', 4),
+          _item(AppImage.bottomNavTest, 'Tests', 3),
+          _item(AppImage.bottomNavProfile, 'Profile', 4),
         ],
       ),
     );
   }
 
-  Widget _item(IconData icon, String title, int index) {
+  Widget _item(String imagePath, String title, int index) {
     final selected = currentIndex == index;
 
     return InkWell(
@@ -40,12 +41,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 22, color: selected ? AppColors.gold : AppColors.textSecondary),
-          const SizedBox(height: 3),
-          Text(
-            title,
-            style: selected ? AppTextStyles.gold95bold : AppTextStyles.textSecondary95bold,
-          ),
+          Image.asset(imagePath, width: 22, height: 22, color: selected ? AppColors.gold : AppColors.textSecondary),
+          const SizedBox(height: 4),
+          Text(title, style: selected ? AppTextStyles.gold95bold : AppTextStyles.textSecondary95bold),
         ],
       ),
     );
@@ -60,7 +58,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         width: 46,
         height: 46,
         decoration: const BoxDecoration(color: AppColors.gold, shape: BoxShape.circle),
-        child: const Icon(Icons.document_scanner_outlined, color: AppColors.primaryDark, size: 20),
+        child: Center(child: Image.asset(AppImage.bottomNavScan, width: 22, height: 22, color: AppColors.primaryDark)),
       ),
     );
   }

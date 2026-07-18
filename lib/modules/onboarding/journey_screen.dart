@@ -3,7 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:provider/provider.dart';
+import '../daily_challenge/provider/pt_challenge_controller.dart';
 import '../../core/constant/app_colors.dart';
+import '../../core/constant/app_image.dart';
 import '../../core/constant/app_text_styles.dart';
 import '../../core/routes/approute.dart';
 
@@ -75,6 +78,13 @@ class _JourneyScreenState extends State<JourneyScreen> {
   }
 
   void _completeJourney() {
+    context.read<PtChallengeController>().updateJourney(
+          name: _nameController.text.trim(),
+          exam: _selectedExam,
+          attempt: _selectedAttempt,
+          hours: _studyHours,
+        );
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -360,7 +370,7 @@ class _JourneyScreenState extends State<JourneyScreen> {
       children: [
         Row(
           children: [
-            const Icon(Icons.calendar_month_rounded, color: AppColors.gold, size: 20),
+            Image.asset(AppImage.calenderImg, color: AppColors.gold, width: 20, height: 20),
             const SizedBox(width: 6),
             Expanded(
               child: AutoSizeText(

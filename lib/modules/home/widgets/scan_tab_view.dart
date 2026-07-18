@@ -72,7 +72,6 @@ class ScanTabView extends StatelessWidget {
             'Recent Submissions',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
           ),
-          const SizedBox(height: 12),
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -84,14 +83,11 @@ class ScanTabView extends StatelessWidget {
               return GestureDetector(
                 onTap: isCompleted
                     ? () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => AnalysisScreen(
-                              fileName: eval.title,
-                              fileType: 'pdf',
-                            ),
-                          ),
-                        )
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => AnalysisScreen(fileName: eval.title, fileType: 'pdf'),
+                        ),
+                      )
                     : null,
                 child: Container(
                   padding: const EdgeInsets.all(16),
@@ -155,10 +151,7 @@ class ScanTabView extends StatelessWidget {
                             eval.score,
                             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
                           ),
-                          if (isCompleted) ...[
-                            const SizedBox(height: 4),
-                            const Icon(Icons.chevron_right_rounded, size: 16, color: AppColors.gold),
-                          ],
+                          if (isCompleted) ...[const SizedBox(height: 4), const Icon(Icons.chevron_right_rounded, size: 16, color: AppColors.gold)],
                         ],
                       ),
                     ],

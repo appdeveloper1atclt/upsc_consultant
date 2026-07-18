@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upsc_consultant/core/constant/app_image.dart';
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/app_text_styles.dart';
 
@@ -79,9 +80,10 @@ class ArticleCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(
-                    Icons.calendar_today_outlined,
-                    size: 12,
+                  Image.asset(
+                    AppImage.calenderImg,
+                    width: 12,
+                    height: 12,
                     color: AppColors.textHint,
                   ),
                   const SizedBox(width: 4),

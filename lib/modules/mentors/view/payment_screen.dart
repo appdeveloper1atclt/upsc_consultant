@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:upsc_consultant/core/constant/app_colors.dart';
+import 'package:upsc_consultant/core/constant/app_image.dart';
 import 'package:upsc_consultant/core/constant/app_text_styles.dart';
 import 'package:upsc_consultant/modules/home/widgets/top_mentors_section.dart';
 import '../../../core/widgets/shimmer_placeholder.dart';
@@ -207,7 +208,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             const SizedBox(height: 4),
                             Row(
                               children: [
-                                const Icon(Icons.calendar_today_rounded, size: 12, color: AppColors.gold),
+                                Image.asset(AppImage.calenderImg, width: 12, height: 12, color: AppColors.gold),
                                 const SizedBox(width: 6),
                                 Text(
                                   widget.selectedSlot,

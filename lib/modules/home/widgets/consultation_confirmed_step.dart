@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constant/app_colors.dart';
+import '../../../../core/constant/app_image.dart';
 import '../../../../core/routes/approute.dart';
 import 'package:go_router/go_router.dart';
 import 'package:confetti/confetti.dart';
@@ -183,7 +184,7 @@ class _ConsultationConfirmedStepState extends State<ConsultationConfirmedStep> {
                   side: const BorderSide(color: AppColors.primary, width: 1.2),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
-                icon: const Icon(Icons.calendar_today_rounded, size: 15, color: AppColors.primary),
+                icon: Image.asset(AppImage.calenderImg, width: 15, height: 15, color: AppColors.primary),
                 label: const Text('Add to Calendar', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary)),
                 onPressed: widget.onAddToCalendar,
               ),
