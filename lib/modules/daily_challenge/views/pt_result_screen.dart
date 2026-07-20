@@ -34,12 +34,7 @@ class PtResultScreen extends StatelessWidget {
         ),
         title: const Text(
           'Challenge Result',
-          style: TextStyle(
-            fontFamily: 'PlusJakartaSans',
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-            color: AppColors.textPrimary,
-          ),
+          style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
         ),
         centerTitle: true,
       ),
@@ -52,40 +47,21 @@ class PtResultScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFF081B2F), Color(0xFF102A43)],
-                ),
+                gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFF081B2F), Color(0xFF102A43)]),
                 borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.15),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  )
-                ],
+                boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.15), blurRadius: 20, offset: const Offset(0, 10))],
               ),
               child: Column(
                 children: [
                   const Text(
                     'Congratulations 🎉',
-                    style: TextStyle(
-                      fontFamily: 'PlusJakartaSans',
-                      fontSize: 22,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.goldLight,
-                    ),
+                    style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.goldLight),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     'You have successfully completed the ${challenge.topic} Challenge!',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 11.5,
-                      color: Colors.white70,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: const TextStyle(fontSize: 11.5, color: Colors.white70, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 24),
 
@@ -98,21 +74,12 @@ class PtResultScreen extends StatelessWidget {
                         children: [
                           Text(
                             '${controller.score}/$totalMarks',
-                            style: const TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
+                            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white),
                           ),
                           const SizedBox(height: 2),
                           const Text(
                             'SCORE OBTAINED',
-                            style: TextStyle(
-                              fontSize: 8.5,
-                              fontWeight: FontWeight.w800,
-                              color: AppColors.goldLight,
-                              letterSpacing: 1.2,
-                            ),
+                            style: TextStyle(fontSize: 8.5, fontWeight: FontWeight.w800, color: AppColors.goldLight, letterSpacing: 1.2),
                           ),
                         ],
                       ),
@@ -123,21 +90,12 @@ class PtResultScreen extends StatelessWidget {
                         children: [
                           Text(
                             '#${controller.rank}',
-                            style: const TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w900,
-                              color: AppColors.goldLight,
-                            ),
+                            style: const TextStyle(fontSize: 36, fontWeight: FontWeight.w900, color: AppColors.goldLight),
                           ),
                           const SizedBox(height: 2),
                           const Text(
                             'TODAY\'S RANK',
-                            style: TextStyle(
-                              fontSize: 8.5,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white70,
-                              letterSpacing: 1.2,
-                            ),
+                            style: TextStyle(fontSize: 8.5, fontWeight: FontWeight.w800, color: Colors.white70, letterSpacing: 1.2),
                           ),
                         ],
                       ),
@@ -148,21 +106,12 @@ class PtResultScreen extends StatelessWidget {
                         children: [
                           Text(
                             '${controller.accuracy.toStringAsFixed(0)}%',
-                            style: const TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.greenAccent,
-                            ),
+                            style: const TextStyle(fontSize: 36, fontWeight: FontWeight.w900, color: Colors.greenAccent),
                           ),
                           const SizedBox(height: 2),
                           const Text(
                             'ACCURACY',
-                            style: TextStyle(
-                              fontSize: 8.5,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white70,
-                              letterSpacing: 1.2,
-                            ),
+                            style: TextStyle(fontSize: 8.5, fontWeight: FontWeight.w800, color: Colors.white70, letterSpacing: 1.2),
                           ),
                         ],
                       ),
@@ -248,10 +197,7 @@ class PtResultScreen extends StatelessWidget {
                         elevation: 0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
-                      child: const Text(
-                        'Retry Challenge',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.5),
-                      ),
+                      child: const Text('Retry Challenge', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.5)),
                     ),
                   ),
                 ),
@@ -269,6 +215,93 @@ class PtResultScreen extends StatelessWidget {
                   'Back to Home',
                   style: TextStyle(color: AppColors.textSecondary, fontWeight: FontWeight.bold),
                 ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFFBF2),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppColors.gold.withValues(alpha: 0.35)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: const [
+                      Text("🎁", style: TextStyle(fontSize: 22)),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          "Invite Friends & Earn FREE Mentorship",
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  const Text(
+                    "Help your fellow aspirants start their UPSC journey and unlock FREE consultation sessions with our expert mentors.",
+                    style: TextStyle(fontSize: 12.5, color: AppColors.textSecondary, height: 1.45),
+                  ),
+
+                  const SizedBox(height: 18),
+
+                  _rewardTile("Invite 2 Friends", "1 FREE Expert Consultation", Icons.looks_one_rounded),
+
+                  const SizedBox(height: 10),
+
+                  _rewardTile("Invite 3 Friends", "2 FREE Consultation Sessions", Icons.looks_two_rounded),
+
+                  const SizedBox(height: 10),
+
+                  _rewardTile("Invite 5 Friends", "4 FREE Consultation Sessions", Icons.workspace_premium_rounded),
+
+                  const SizedBox(height: 18),
+
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(color: Colors.green.withValues(alpha: 0.08), borderRadius: BorderRadius.circular(12)),
+                    child: const Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.verified_rounded, color: Colors.green, size: 18),
+                        SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            "Rewards are unlocked only when your invited friends install the app, verify their mobile number and complete their profile.",
+                            style: TextStyle(fontSize: 11, color: AppColors.textSecondary, height: 1.45),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 18),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        // Share Referral Link
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      ),
+                      icon: const Icon(Icons.share_rounded),
+                      label: const Text("Invite Friends", style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -296,25 +329,48 @@ class PtResultScreen extends StatelessWidget {
               children: [
                 Text(
                   value,
-                  style: const TextStyle(
-                    fontFamily: 'PlusJakartaSans',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: const TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 16, fontWeight: FontWeight.w800, color: AppColors.textPrimary),
                 ),
                 const SizedBox(height: 1),
                 Text(
                   label,
-                  style: const TextStyle(
-                    fontSize: 9.5,
-                    color: AppColors.textSecondary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: const TextStyle(fontSize: 9.5, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
                 ),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _rewardTile(String title, String reward, IconData icon) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 18,
+            backgroundColor: AppColors.gold.withValues(alpha: .18),
+            child: Icon(icon, color: AppColors.goldDark, size: 20),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13.5)),
+                const SizedBox(height: 2),
+                Text(reward, style: const TextStyle(fontSize: 11.5, color: AppColors.textSecondary)),
+              ],
+            ),
+          ),
+          const Icon(Icons.arrow_forward_ios_rounded, size: 15, color: AppColors.textSecondary),
         ],
       ),
     );

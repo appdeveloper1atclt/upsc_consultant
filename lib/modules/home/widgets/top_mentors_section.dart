@@ -59,7 +59,18 @@ class TopMentorsSection extends StatelessWidget {
                 child: Container(
                   width: 118,
                   padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(16), boxShadow: AppShadows.card),
+                  decoration: BoxDecoration(
+                    color: AppColors.card,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: const Color(0xFFF3EAD3), width: 1.2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.gold.withValues(alpha: 0.03),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      )
+                    ],
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -75,18 +86,18 @@ class TopMentorsSection extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 6),
-                      Text(m.name, style: AppTextStyles.cardTitle.copyWith(fontSize: 11.5), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(m.name, style: AppTextStyles.cardTitle.copyWith(fontSize: 11), maxLines: 1, overflow: TextOverflow.ellipsis),
                       const SizedBox(height: 1),
-                      Text(m.expertise, style: AppTextStyles.cardSubtitle.copyWith(fontSize: 9.5), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(m.expertise, style: AppTextStyles.cardSubtitle.copyWith(fontSize: 9), maxLines: 1, overflow: TextOverflow.ellipsis),
                       const SizedBox(height: 3),
                       Row(
                         children: [
                           const Icon(Icons.star_rounded, size: 12, color: AppColors.gold),
                           const SizedBox(width: 2),
-                          Text('${m.rating}', style: AppTextStyles.textPrimary10bold),
+                          Text('${m.rating}', style: AppTextStyles.textPrimary10bold.copyWith(fontSize: 9)),
                           const SizedBox(width: 4),
                           Expanded(
-                            child: Text(m.studentsLabel, style: AppTextStyles.caption.copyWith(fontSize: 8.5), overflow: TextOverflow.ellipsis),
+                            child: Text(m.studentsLabel, style: AppTextStyles.caption.copyWith(fontSize: 8), overflow: TextOverflow.ellipsis),
                           ),
                         ],
                       ),
@@ -96,7 +107,7 @@ class TopMentorsSection extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 3),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(color: AppColors.premiumBadge, borderRadius: BorderRadius.circular(8)),
-                        child: Text('₹${m.price} / session', style: AppTextStyles.goldMuted95bold.copyWith(fontSize: 9)),
+                        child: Text('₹${m.price} / session', style: AppTextStyles.goldMuted95bold.copyWith(fontSize: 8.5)),
                       ),
                     ],
                   ),

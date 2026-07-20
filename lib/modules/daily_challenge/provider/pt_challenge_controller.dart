@@ -97,16 +97,59 @@ class PtChallengeController extends ChangeNotifier {
 
   // ── Operations ────────────────────────────────────────────────────────────
 
-  void startChallenge(DailyChallenge challenge) {
+  List<PtQuestion> _getCustomQuestions(String topic, int count) {
+    final baseQuestions = _repository.getQuestionsForTopic(topic);
+    if (baseQuestions.isEmpty) return [];
+
+    return List.generate(count, (index) {
+      final baseQ = baseQuestions[index % baseQuestions.length];
+      final qNum = index + 1;
+      return PtQuestion(
+        id: '${baseQ.id}_custom_$qNum',
+        question: 'Q$qNum. ${baseQ.question.replaceFirst(RegExp(r'^Q\d+\.\s*'), '')}',
+        options: baseQ.options,
+        correctAnswer: baseQ.correctAnswer,
+        explanation: baseQ.explanation,
+        difficulty: baseQ.difficulty,
+        topic: topic,
+      );
+    });
+  }
+
+  void startChallenge(
+    DailyChallenge challenge, {
+    String? customTopic,
+    int? customQuestionsCount,
+    int? customDurationMinutes,
+  }) {
     // If it's already attempted, we just view results
     if (challenge.attempted) return;
 
+    final selectedTopic = customTopic ?? challenge.topic;
+    final questionsCount = customQuestionsCount ?? challenge.totalQuestions;
+    final durationMinutes = customDurationMinutes ?? challenge.duration;
+
     // Reset/Setup state
-    _currentChallenge = challenge;
-    _questions = _repository.getQuestionsForTopic(challenge.topic);
+    _questions = _getCustomQuestions(selectedTopic, questionsCount);
     _currentQuestionIndex = 0;
-    _remainingTime = challenge.duration * 60;
+    _remainingTime = durationMinutes * 60;
     _isSubmitting = false;
+
+    _currentChallenge = DailyChallenge(
+      id: challenge.id,
+      title: challenge.title,
+      topic: selectedTopic,
+      difficulty: challenge.difficulty,
+      duration: durationMinutes,
+      totalQuestions: questionsCount,
+      totalMarks: questionsCount * 4,
+      availableDate: challenge.availableDate,
+      attempted: challenge.attempted,
+      progress: challenge.progress,
+      lastScore: challenge.lastScore,
+      lastAccuracy: challenge.lastAccuracy,
+      lastTimeTaken: challenge.lastTimeTaken,
+    );
 
     // Mark first question as visited & current
     if (_questions.isNotEmpty) {

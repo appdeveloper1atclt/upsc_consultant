@@ -7,6 +7,7 @@ class AppImage {
   static const String bottomNavScan = "assets/images/scan.png";
   static const String bottomNavTest = "assets/images/test.png";
   static const String bottomNavProfile = "assets/images/user.png";
+  static const String splashImg = "assets/images/splash.png";
 
   static const String appLogo = "assets/images/logo.png";
   static const String ashokimg = "assets/images/ashok.jpg";
